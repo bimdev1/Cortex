@@ -1,0 +1,38 @@
+# @cortex/plugin-{{pluginName}}
+
+A plugin for the Cortex platform that provides {{pluginName}} functionality.
+
+## Installation
+
+```bash
+yarn add @cortex/plugin-{{pluginName}}
+```
+
+## Usage
+
+```typescript
+import { {{pluginName}}Plugin } from '@cortex/plugin-{{pluginName}}';
+
+// Register the plugin with NocoBase
+app.registerPlugin({{pluginName}}Plugin);
+```
+
+## Features
+
+- Feature 1
+- Feature 2
+- Feature 3
+
+## Development
+
+```bash
+# Build the plugin
+yarn build
+
+# Run tests
+yarn test
+```
+
+## License
+
+MIT

@@ -1,0 +1,8 @@
+{
+  "logger": {
+    "level": "debug"
+  },
+  "telemetry": {
+    "enabled": false
+  }
+}

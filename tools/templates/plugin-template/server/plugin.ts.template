@@ -1,0 +1,21 @@
+import { Plugin } from '@nocobase/server';
+
+export class {{pluginName}}Plugin extends Plugin {
+  async afterAdd() {}
+  
+  async beforeLoad() {}
+  
+  async load() {
+    // Register collections, services, and routes
+  }
+  
+  async install() {}
+  
+  async afterEnable() {}
+  
+  async afterDisable() {}
+  
+  async remove() {}
+}
+
+export default {{pluginName}}Plugin;

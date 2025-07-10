@@ -1,0 +1,14 @@
+{
+  "name": "@cortex/plugin-core",
+  "version": "0.1.0",
+  "main": "lib/server/index.js",
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0"
+  },
+  "peerDependencies": {
+    "@nocobase/server": "*",
+    "@nocobase/client": "*"
+  }
+}

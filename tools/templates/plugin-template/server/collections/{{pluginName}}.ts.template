@@ -1,0 +1,21 @@
+import { defineCollection } from '@nocobase/database';
+
+export default defineCollection({
+  name: '{{pluginName}}',
+  fields: [
+    {
+      type: 'string',
+      name: 'name',
+      unique: true,
+    },
+    {
+      type: 'text',
+      name: 'description',
+    },
+    {
+      type: 'string',
+      name: 'status',
+      defaultValue: 'active',
+    },
+  ],
+});

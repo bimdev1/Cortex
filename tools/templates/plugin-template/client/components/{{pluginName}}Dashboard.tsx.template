@@ -1,0 +1,10 @@
+import React from 'react';
+
+export const {{pluginName}}Dashboard: React.FC = () => {
+  return (
+    <div>
+      <h1>{{pluginName}} Dashboard</h1>
+      <p>Plugin functionality will be implemented here.</p>
+    </div>
+  );
+};

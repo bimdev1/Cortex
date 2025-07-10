@@ -1,0 +1,34 @@
+{
+  "database": {
+    "dialect": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "cortex",
+    "password": "cortex123",
+    "database": "cortex",
+    "logging": false
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379
+  },
+  "plugins": {
+    "builtIn": [
+      "error-handler",
+      "collection-manager",
+      "ui-routes-storage",
+      "ui-schema-storage",
+      "file-manager",
+      "system-settings",
+      "users",
+      "acl",
+      "client"
+    ],
+    "local": [
+      "@cortex/plugin-core"
+    ]
+  },
+  "telemetry": {
+    "enabled": false
+  }
+}

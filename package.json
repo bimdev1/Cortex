@@ -1,0 +1,39 @@
+{
+  "name": "cortex",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/",
+    "packages/plugins//*"
+  ],
+  "scripts": {
+    "bootstrap": "yarn install",
+    "build": "yarn workspaces foreach run build",
+    "dev": "docker-compose up -d",
+    "dev:nocobase": "ts-node-dev --respawn --transpile-only packages/core/app/server/src/index.ts",
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "test:plugins": "yarn workspaces foreach --include '@cortex/*' run test",
+    "test:ci": "yarn test && yarn test:plugins"
+  },
+  "devDependencies": {
+    "@nocobase/client": "^1.8.2",
+    "@nocobase/database": "^1.8.2",
+    "@nocobase/server": "^1.8.2",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": ">=1.22.0"
+  }
+}
