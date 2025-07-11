@@ -1,0 +1,23 @@
+FROM node:18-bullseye
+
+WORKDIR /app
+
+# Install Chromium and dependencies
+RUN apt-get update && apt-get install -y     chromium     fonts-freefont-ttf     fonts-noto-color-emoji     --no-install-recommends     && rm -rf /var/lib/apt/lists/*
+
+# Create directories
+RUN mkdir -p scripts/demo storage/demo storage/screenshots
+
+# Copy JavaScript versions of the scripts
+COPY scripts/demo/seed-demo-data.js scripts/demo/
+COPY scripts/demo/generate-screenshots-debian.js scripts/demo/
+
+# Install dependencies
+RUN npm install fs-extra playwright
+
+# Set environment variables for Playwright
+ENV PLAYWRIGHT_BROWSERS_PATH=/usr/bin
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+
+# Default command to run both scripts
+CMD ["sh", "-c", "echo '🌱 Running demo data seeder...' && node scripts/demo/seed-demo-data.js && echo '\n📸 Running screenshot generator...' && node scripts/demo/generate-screenshots-debian.js"]

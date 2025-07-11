@@ -1,0 +1,19 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Create directories
+RUN mkdir -p scripts/demo storage/demo storage/screenshots
+
+# Copy JavaScript versions of the scripts
+COPY scripts/demo/seed-demo-data.js scripts/demo/
+COPY scripts/demo/generate-screenshots.js scripts/demo/
+
+# Install dependencies
+RUN npm install fs-extra playwright
+
+# Create a simple validation script
+RUN echo 'console.log("🌱 Validating seed-demo-data.js...");try {  const { DemoDataSeeder } = require("./scripts/demo/seed-demo-data.js");  console.log("✅ seed-demo-data.js loaded successfully");  console.log("Creating demo data seeder instance...");  const seeder = new DemoDataSeeder();  console.log("✅ DemoDataSeeder instance created");  console.log("\n📸 Validating generate-screenshots.js...");  const { ScreenshotGenerator } = require("./scripts/demo/generate-screenshots.js");  console.log("✅ generate-screenshots.js loaded successfully");  console.log("Creating screenshot generator instance...");  const generator = new ScreenshotGenerator();  console.log("✅ ScreenshotGenerator instance created");  console.log("\n✅ All demo scripts validated successfully!");} catch (error) {  console.error("❌ Error during validation:", error);  process.exit(1);}' > validate.js
+
+# Run the validation script
+CMD ["node", "validate.js"]

@@ -1,0 +1,20 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package.json and scripts
+COPY package.json ./
+COPY scripts/demo ./scripts/demo/
+
+# Create output directories
+RUN mkdir -p storage/demo storage/screenshots
+
+# Install dependencies
+RUN npm install -g ts-node typescript
+RUN npm install @types/node fs-extra playwright
+
+# Set environment variables
+ENV NODE_ENV=development
+
+# Default command to run both scripts
+CMD ["sh", "-c", "echo '🌱 Running demo data seeder...' && ts-node scripts/demo/seed-demo-data.ts && echo '\n📸 Running screenshot generator...' && ts-node scripts/demo/generate-screenshots.ts"]

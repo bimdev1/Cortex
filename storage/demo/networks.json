@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Akash Network",
+    "network": "akash",
+    "connected": true,
+    "status": "online",
+    "latency": 56,
+    "availableNodes": 1329,
+    "currentPrice": 0.05708580193467793,
+    "lastChecked": "2025-07-11T03:51:42.484Z"
+  },
+  {
+    "name": "Render Network",
+    "network": "render",
+    "connected": true,
+    "status": "online",
+    "latency": 94,
+    "availableNodes": 990,
+    "currentPrice": 0.18774368825880974,
+    "lastChecked": "2025-07-11T03:51:42.484Z"
+  },
+  {
+    "name": "Golem Network",
+    "network": "golem",
+    "connected": true,
+    "status": "online",
+    "latency": 122,
+    "availableNodes": 788,
+    "currentPrice": 0.03234901341910334,
+    "lastChecked": "2025-07-11T03:51:42.484Z"
+  }
+]

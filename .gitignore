@@ -4,6 +4,7 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
 
 # Build outputs
 
@@ -37,6 +38,13 @@ storage/uploads/*
 storage/logs/*
 storage/backups/*
 !storage/.gitkeep
+!storage/demo/.gitkeep
+!storage/screenshots/.gitkeep
+
+# Demo data and screenshots (keep these in git for demo purposes)
+!storage/demo/*.json
+!storage/screenshots/*.png
+!storage/screenshots/*.svg
 
 # IDE
 
@@ -48,6 +56,11 @@ storage/backups/*
 # OS
 
 .DS_Store
+
+# Temporary files
+eslint-temp/
+test-package.json
+*.backup
 Thumbs.db
 
 # Docker

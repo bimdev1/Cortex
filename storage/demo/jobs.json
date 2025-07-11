@@ -1,0 +1,111 @@
+[
+  {
+    "id": "job-7d763c2b",
+    "name": "Data Processing Pipeline #2",
+    "status": "completed",
+    "configuration": {
+      "provider": "ionet",
+      "image": "python:3.9-slim",
+      "cpu": 465,
+      "memory": "2Gi",
+      "storage": "1Gi",
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "WORKERS": "4"
+      },
+      "duration": 7694
+    },
+    "estimatedCost": 0.05,
+    "actualCost": 0.050400156753773795,
+    "createdAt": "2025-07-10T18:54:12.745Z",
+    "updatedAt": "2025-07-10T21:00:52.573Z",
+    "startedAt": "2025-07-10T18:58:46.646Z",
+    "completedAt": "2025-07-10T21:00:52.573Z"
+  },
+  {
+    "id": "job-6a8852ba",
+    "name": "Data Processing Pipeline #4",
+    "status": "completed",
+    "configuration": {
+      "provider": "akash",
+      "image": "python:3.9-slim",
+      "cpu": 507,
+      "memory": "2Gi",
+      "storage": "1Gi",
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "WORKERS": "4"
+      },
+      "duration": 7800
+    },
+    "estimatedCost": 0.05,
+    "actualCost": 0.05080909782867991,
+    "createdAt": "2025-07-10T14:40:14.513Z",
+    "updatedAt": "2025-07-10T16:41:53.181Z",
+    "startedAt": "2025-07-10T14:42:08.775Z",
+    "completedAt": "2025-07-10T16:41:53.181Z"
+  },
+  {
+    "id": "job-eca94bdb",
+    "name": "Web Server Deployment #1",
+    "status": "completed",
+    "configuration": {
+      "provider": "akash",
+      "image": "nginx:alpine",
+      "cpu": 56,
+      "memory": "512Mi",
+      "storage": "1Gi",
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "duration": 3679
+    },
+    "estimatedCost": 0.005,
+    "actualCost": 0.0056874349852424864,
+    "createdAt": "2025-07-07T01:58:52.756Z",
+    "updatedAt": "2025-07-07T03:02:25.554Z",
+    "startedAt": "2025-07-07T02:00:55.729Z",
+    "completedAt": "2025-07-07T03:02:25.554Z"
+  },
+  {
+    "id": "job-a436d5b2",
+    "name": "Web Server Deployment #5",
+    "status": "completed",
+    "configuration": {
+      "provider": "render",
+      "image": "nginx:alpine",
+      "cpu": 105,
+      "memory": "512Mi",
+      "storage": "1Gi",
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "duration": 3122
+    },
+    "estimatedCost": 0.005,
+    "actualCost": 0.0055525208347214534,
+    "createdAt": "2025-07-05T02:38:24.291Z",
+    "updatedAt": "2025-07-05T03:45:34.896Z",
+    "startedAt": "2025-07-05T02:41:07.720Z",
+    "completedAt": "2025-07-05T03:45:34.896Z"
+  },
+  {
+    "id": "job-c927e901",
+    "name": "Web Server Deployment #3",
+    "status": "pending",
+    "configuration": {
+      "provider": "bittensor",
+      "image": "nginx:alpine",
+      "cpu": 144,
+      "memory": "512Mi",
+      "storage": "1Gi",
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "duration": 3225
+    },
+    "estimatedCost": 0.005,
+    "createdAt": "2025-07-04T21:30:50.835Z",
+    "updatedAt": "2025-07-11T03:51:42.485Z"
+  }
+]

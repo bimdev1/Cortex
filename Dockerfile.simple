@@ -1,0 +1,20 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Create directories
+RUN mkdir -p scripts/demo storage/demo storage/screenshots
+
+# Copy only the demo scripts
+COPY scripts/demo/seed-demo-data.ts scripts/demo/
+COPY scripts/demo/generate-screenshots.ts scripts/demo/
+
+# Install dependencies
+RUN npm install -g ts-node typescript
+RUN npm install @types/node fs-extra playwright
+
+# Create a simple validation script
+RUN echo 'console.log("Validating seed-demo-data.ts...");try {  require("./scripts/demo/seed-demo-data.ts");  console.log("✅ seed-demo-data.ts is valid");} catch (error) {  console.error("❌ Error in seed-demo-data.ts:", error.message);}console.log("\nValidating generate-screenshots.ts...");try {  require("./scripts/demo/generate-screenshots.ts");  console.log("✅ generate-screenshots.ts is valid");} catch (error) {  console.error("❌ Error in generate-screenshots.ts:", error.message);}' > validate.js
+
+# Run the validation script
+CMD ["node", "validate.js"]

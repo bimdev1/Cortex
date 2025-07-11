@@ -1,0 +1,37 @@
+[
+  {
+    "timestamp": "2025-07-05T12:00:00.000Z",
+    "estimated": 0.243,
+    "actual": 0.235
+  },
+  {
+    "timestamp": "2025-07-06T12:00:00.000Z",
+    "estimated": 0.278,
+    "actual": 0.294
+  },
+  {
+    "timestamp": "2025-07-07T12:00:00.000Z",
+    "estimated": 0.271,
+    "actual": 0.239
+  },
+  {
+    "timestamp": "2025-07-08T12:00:00.000Z",
+    "estimated": 0.441,
+    "actual": 0.396
+  },
+  {
+    "timestamp": "2025-07-09T12:00:00.000Z",
+    "estimated": 0.379,
+    "actual": 0.303
+  },
+  {
+    "timestamp": "2025-07-10T12:00:00.000Z",
+    "estimated": 0.352,
+    "actual": 0.365
+  },
+  {
+    "timestamp": "2025-07-11T12:00:00.000Z",
+    "estimated": 0.488,
+    "actual": 0.501
+  }
+]

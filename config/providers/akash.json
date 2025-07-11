@@ -1,0 +1,8 @@
+{
+  "rpcEndpoint": "https://rpc.akash.forbole.com:443",
+  "apiEndpoint": "https://api.akash.forbole.com:443", 
+  "chainId": "akashnet-2",
+  "defaultTimeout": 30000,
+  "pollInterval": 15000,
+  "retries": 3
+}
