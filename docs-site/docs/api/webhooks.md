@@ -15,12 +15,7 @@ A webhook object represents a notification endpoint:
   "id": "webhook_1a2b3c4d5e6f",
   "name": "Job Status Notifications",
   "url": "https://your-server.com/cortex-webhook",
-  "events": [
-    "job.created",
-    "job.started",
-    "job.completed",
-    "job.failed"
-  ],
+  "events": ["job.created", "job.started", "job.completed", "job.failed"],
   "secret": "sha256:1234abcd...",
   "enabled": true,
   "createdAt": "2025-07-01T10:00:00Z",
@@ -59,12 +54,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/webhooks" \
       "id": "webhook_1a2b3c4d5e6f",
       "name": "Job Status Notifications",
       "url": "https://your-server.com/cortex-webhook",
-      "events": [
-        "job.created",
-        "job.started",
-        "job.completed",
-        "job.failed"
-      ],
+      "events": ["job.created", "job.started", "job.completed", "job.failed"],
       "enabled": true,
       "createdAt": "2025-07-01T10:00:00Z",
       "updatedAt": "2025-07-10T15:30:00Z"
@@ -73,10 +63,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/webhooks" \
       "id": "webhook_2b3c4d5e6f7g",
       "name": "Provider Status Alerts",
       "url": "https://your-server.com/provider-alerts",
-      "events": [
-        "provider.status.changed",
-        "provider.pricing.changed"
-      ],
+      "events": ["provider.status.changed", "provider.pricing.changed"],
       "enabled": true,
       "createdAt": "2025-07-05T14:20:00Z",
       "updatedAt": "2025-07-10T09:15:00Z"
@@ -109,12 +96,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/webhooks/webhook_1
     "id": "webhook_1a2b3c4d5e6f",
     "name": "Job Status Notifications",
     "url": "https://your-server.com/cortex-webhook",
-    "events": [
-      "job.created",
-      "job.started",
-      "job.completed",
-      "job.failed"
-    ],
+    "events": ["job.created", "job.started", "job.completed", "job.failed"],
     "secret": "sha256:1234abcd...",
     "enabled": true,
     "createdAt": "2025-07-01T10:00:00Z",
@@ -157,13 +139,13 @@ POST /api/plugin-core/webhooks
 
 ### Request Body
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `name` | string | Yes | Display name for the webhook |
-| `url` | string | Yes | Endpoint URL to receive webhook events |
-| `events` | array | Yes | Array of event types to subscribe to |
-| `secret` | string | No | Secret for webhook signature verification |
-| `enabled` | boolean | No | Whether the webhook is active (default: true) |
+| Field     | Type    | Required | Description                                   |
+| --------- | ------- | -------- | --------------------------------------------- |
+| `name`    | string  | Yes      | Display name for the webhook                  |
+| `url`     | string  | Yes      | Endpoint URL to receive webhook events        |
+| `events`  | array   | Yes      | Array of event types to subscribe to          |
+| `secret`  | string  | No       | Secret for webhook signature verification     |
+| `enabled` | boolean | No       | Whether the webhook is active (default: true) |
 
 ### Example Request
 
@@ -193,12 +175,7 @@ curl -X POST "https://your-cortex-instance.com/api/plugin-core/webhooks" \
     "id": "webhook_1a2b3c4d5e6f",
     "name": "Job Status Notifications",
     "url": "https://your-server.com/cortex-webhook",
-    "events": [
-      "job.created",
-      "job.started",
-      "job.completed",
-      "job.failed"
-    ],
+    "events": ["job.created", "job.started", "job.completed", "job.failed"],
     "secret": "sha256:1234abcd...",
     "enabled": true,
     "createdAt": "2025-07-10T16:45:00Z",
@@ -243,13 +220,7 @@ curl -X PUT "https://your-cortex-instance.com/api/plugin-core/webhooks/webhook_1
     "id": "webhook_1a2b3c4d5e6f",
     "name": "Job Status Notifications",
     "url": "https://your-server.com/cortex-webhook",
-    "events": [
-      "job.created",
-      "job.started",
-      "job.completed",
-      "job.failed",
-      "job.cancelled"
-    ],
+    "events": ["job.created", "job.started", "job.completed", "job.failed", "job.cancelled"],
     "enabled": true,
     "updatedAt": "2025-07-10T17:30:00Z"
   }
@@ -325,13 +296,13 @@ GET /api/plugin-core/webhooks/:id/history
 
 ### Query Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | string | Filter by delivery status (delivered, failed, retrying) |
-| `from` | string | Filter by delivery date (ISO format) |
-| `to` | string | Filter by delivery date (ISO format) |
-| `page` | number | Page number for pagination |
-| `limit` | number | Items per page |
+| Parameter | Type   | Description                                             |
+| --------- | ------ | ------------------------------------------------------- |
+| `status`  | string | Filter by delivery status (delivered, failed, retrying) |
+| `from`    | string | Filter by delivery date (ISO format)                    |
+| `to`      | string | Filter by delivery date (ISO format)                    |
+| `page`    | number | Page number for pagination                              |
+| `limit`   | number | Items per page                                          |
 
 ### Example Request
 
@@ -411,33 +382,33 @@ curl -X POST "https://your-cortex-instance.com/api/plugin-core/webhooks/webhook_
 
 ### Job Events
 
-| Event Type | Description |
-|------------|-------------|
-| `job.created` | Job has been created |
-| `job.scheduled` | Job has been scheduled on a provider |
-| `job.started` | Job has started running |
-| `job.completed` | Job has completed successfully |
-| `job.failed` | Job has failed |
-| `job.cancelled` | Job has been cancelled |
-| `job.expired` | Job has reached its duration limit |
-| `job.cost.threshold` | Job cost has reached a threshold |
+| Event Type           | Description                          |
+| -------------------- | ------------------------------------ |
+| `job.created`        | Job has been created                 |
+| `job.scheduled`      | Job has been scheduled on a provider |
+| `job.started`        | Job has started running              |
+| `job.completed`      | Job has completed successfully       |
+| `job.failed`         | Job has failed                       |
+| `job.cancelled`      | Job has been cancelled               |
+| `job.expired`        | Job has reached its duration limit   |
+| `job.cost.threshold` | Job cost has reached a threshold     |
 
 ### Provider Events
 
-| Event Type | Description |
-|------------|-------------|
-| `provider.status.changed` | Provider status has changed |
-| `provider.pricing.changed` | Provider pricing has changed |
-| `provider.added` | New provider has been added |
-| `provider.removed` | Provider has been removed |
-| `provider.wallet.low` | Provider wallet balance is low |
+| Event Type                 | Description                    |
+| -------------------------- | ------------------------------ |
+| `provider.status.changed`  | Provider status has changed    |
+| `provider.pricing.changed` | Provider pricing has changed   |
+| `provider.added`           | New provider has been added    |
+| `provider.removed`         | Provider has been removed      |
+| `provider.wallet.low`      | Provider wallet balance is low |
 
 ### System Events
 
-| Event Type | Description |
-|------------|-------------|
-| `system.alert` | System alert has been triggered |
-| `system.update.available` | System update is available |
+| Event Type                  | Description                                   |
+| --------------------------- | --------------------------------------------- |
+| `system.alert`              | System alert has been triggered               |
+| `system.update.available`   | System update is available                    |
 | `system.resource.threshold` | System resource usage has reached a threshold |
 
 ## Webhook Payload Format
@@ -484,6 +455,7 @@ X-Cortex-Signature: t=1625097600,v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e
 ```
 
 The signature is composed of:
+
 - `t`: Timestamp when the request was sent
 - `v1`: Signature version and hash
 
@@ -495,16 +467,13 @@ const crypto = require('crypto');
 function verifySignature(payload, signature, secret) {
   // Extract timestamp and signature value
   const [timestamp, signatureValue] = signature.replace('t=', '').replace('v1=', '').split(',');
-  
+
   // Create the signature
   const hmac = crypto.createHmac('sha256', secret);
   const expectedSignature = hmac.update(`${timestamp}.${JSON.stringify(payload)}`).digest('hex');
-  
+
   // Compare signatures using constant-time comparison
-  return crypto.timingSafeEqual(
-    Buffer.from(signatureValue),
-    Buffer.from(expectedSignature)
-  );
+  return crypto.timingSafeEqual(Buffer.from(signatureValue), Buffer.from(expectedSignature));
 }
 ```
 
@@ -522,16 +491,16 @@ After 5 failed attempts, the delivery will be marked as permanently failed.
 
 ## Error Handling
 
-| HTTP Code | Error Code | Description |
-|-----------|------------|-------------|
-| 400 | `VALIDATION_ERROR` | Invalid request parameters |
-| 401 | `UNAUTHORIZED` | Missing or invalid API key |
-| 403 | `FORBIDDEN` | Insufficient permissions |
-| 404 | `WEBHOOK_NOT_FOUND` | Webhook not found |
-| 404 | `DELIVERY_NOT_FOUND` | Delivery record not found |
-| 409 | `DUPLICATE_WEBHOOK` | Duplicate webhook URL and events |
-| 429 | `RATE_LIMIT_EXCEEDED` | Too many requests |
-| 500 | `INTERNAL_ERROR` | Server error |
+| HTTP Code | Error Code            | Description                      |
+| --------- | --------------------- | -------------------------------- |
+| 400       | `VALIDATION_ERROR`    | Invalid request parameters       |
+| 401       | `UNAUTHORIZED`        | Missing or invalid API key       |
+| 403       | `FORBIDDEN`           | Insufficient permissions         |
+| 404       | `WEBHOOK_NOT_FOUND`   | Webhook not found                |
+| 404       | `DELIVERY_NOT_FOUND`  | Delivery record not found        |
+| 409       | `DUPLICATE_WEBHOOK`   | Duplicate webhook URL and events |
+| 429       | `RATE_LIMIT_EXCEEDED` | Too many requests                |
+| 500       | `INTERNAL_ERROR`      | Server error                     |
 
 ## Best Practices
 

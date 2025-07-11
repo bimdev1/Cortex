@@ -10,7 +10,6 @@ A NocoBase-powered platform for orchestrating compute jobs across multiple decen
 - Yarn 1.22+
 - Docker & Docker Compose
 
-
 ### Setup
 
 ```bash

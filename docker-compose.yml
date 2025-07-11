@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     environment:
       POSTGRES_DB: cortex
       POSTGRES_USER: cortex
@@ -11,20 +11,20 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "5432:5432"
+      - '5432:5432'
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U cortex"]
+      test: ['CMD-SHELL', 'pg_isready -U cortex']
       interval: 30s
       timeout: 10s
       retries: 5
   redis:
     image: redis:7-alpine
     ports:
-      - "6379:6379"
+      - '6379:6379'
     volumes:
       - redis_data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ['CMD', 'redis-cli', 'ping']
       interval: 30s
       timeout: 10s
       retries: 5
@@ -41,7 +41,7 @@ services:
       REDIS_PORT: 6379
       APP_KEY: cortex-secret-key-change-in-production
     ports:
-      - "13000:80"
+      - '13000:80'
     depends_on:
       postgres:
         condition: service_healthy
@@ -51,7 +51,7 @@ services:
       - ./storage:/app/storage
       - ./packages:/app/packages
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/api/app:getInfo"]
+      test: ['CMD', 'curl', '-f', 'http://localhost/api/app:getInfo']
       interval: 30s
       timeout: 10s
       retries: 10

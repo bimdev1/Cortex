@@ -10,13 +10,13 @@ This guide covers the DePIN network providers supported by Cortex, their unique 
 
 Cortex currently supports the following decentralized physical infrastructure networks:
 
-| Provider | Type | Best For | Cost Range |
-|----------|------|----------|------------|
-| Akash Network | General Compute | Web apps, APIs, databases | $0.01-0.10 per CPU/hr |
-| Render Network | GPU Compute | AI/ML, rendering, video processing | $0.10-1.00 per GPU/hr |
-| Golem | Batch Processing | Scientific computing, simulations | $0.005-0.05 per CPU/hr |
-| Bittensor | AI Inference | Large language models, AI APIs | Pay-per-call |
-| io.net | Storage + Compute | Data-intensive applications | $0.02-0.20 per CPU/hr |
+| Provider       | Type              | Best For                           | Cost Range             |
+| -------------- | ----------------- | ---------------------------------- | ---------------------- |
+| Akash Network  | General Compute   | Web apps, APIs, databases          | $0.01-0.10 per CPU/hr  |
+| Render Network | GPU Compute       | AI/ML, rendering, video processing | $0.10-1.00 per GPU/hr  |
+| Golem          | Batch Processing  | Scientific computing, simulations  | $0.005-0.05 per CPU/hr |
+| Bittensor      | AI Inference      | Large language models, AI APIs     | Pay-per-call           |
+| io.net         | Storage + Compute | Data-intensive applications        | $0.02-0.20 per CPU/hr  |
 
 ## Provider Configuration
 
@@ -28,10 +28,7 @@ Each provider requires specific configuration in your Cortex setup:
 // config/providers/akash.json
 {
   "mnemonic": "your wallet mnemonic",
-  "endpoints": [
-    "https://akash-rpc.polkachu.com:443",
-    "https://rpc-akash.ecostake.com:443"
-  ],
+  "endpoints": ["https://akash-rpc.polkachu.com:443", "https://rpc-akash.ecostake.com:443"],
   "gasPrice": "0.025uakt",
   "deploymentProfile": "standard",
   "maxBidPrice": {
@@ -42,6 +39,7 @@ Each provider requires specific configuration in your Cortex setup:
 ```
 
 Key configuration parameters:
+
 - **mnemonic**: Your wallet seed phrase (keep secure!)
 - **endpoints**: RPC endpoints for the Akash network
 - **gasPrice**: Transaction fee in uakt (micro AKT)
@@ -198,12 +196,12 @@ When uptime is the primary concern:
 
 ### Common Provider Errors
 
-| Error | Provider | Solution |
-|-------|----------|----------|
-| Insufficient funds | Akash, Golem | Add funds to your wallet |
-| Resource unavailable | Render, io.net | Try a different region or resource size |
-| Network congestion | Bittensor | Increase gas price or retry later |
-| Deployment timeout | All | Check provider status and network connectivity |
+| Error                | Provider       | Solution                                       |
+| -------------------- | -------------- | ---------------------------------------------- |
+| Insufficient funds   | Akash, Golem   | Add funds to your wallet                       |
+| Resource unavailable | Render, io.net | Try a different region or resource size        |
+| Network congestion   | Bittensor      | Increase gas price or retry later              |
+| Deployment timeout   | All            | Check provider status and network connectivity |
 
 ### Provider Status Checking
 

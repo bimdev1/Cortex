@@ -33,19 +33,19 @@ Cortex supports multiple authentication methods:
 async function authenticateUser(credentials) {
   // Validate credentials
   const user = await userService.validateCredentials(credentials);
-  
+
   // Check MFA if enabled
   if (user.mfaEnabled) {
     await verifyMfaToken(user, credentials.mfaToken);
   }
-  
+
   // Generate session token
   const token = await tokenService.generateToken({
     userId: user.id,
     scope: user.permissions,
-    expiresIn: '8h'
+    expiresIn: '8h',
   });
-  
+
   return { user, token };
 }
 ```
@@ -62,17 +62,17 @@ API access is secured using:
 // API key validation middleware
 function validateApiKey(req, res, next) {
   const apiKey = req.headers['authorization']?.replace('Bearer ', '');
-  
+
   if (!apiKey) {
     return res.status(401).json({ error: 'API key required' });
   }
-  
+
   const keyInfo = apiKeyService.validateKey(apiKey);
-  
+
   if (!keyInfo) {
     return res.status(401).json({ error: 'Invalid API key' });
   }
-  
+
   // Attach key info to request
   req.apiKey = keyInfo;
   next();
@@ -83,13 +83,13 @@ function validateApiKey(req, res, next) {
 
 Cortex implements a role-based access control (RBAC) system:
 
-| Role | Description |
-|------|-------------|
-| **Admin** | Full system access |
-| **Operator** | Manage jobs and providers |
-| **Developer** | Submit and monitor jobs |
-| **Viewer** | Read-only access |
-| **Billing** | Access to cost and usage data |
+| Role          | Description                   |
+| ------------- | ----------------------------- |
+| **Admin**     | Full system access            |
+| **Operator**  | Manage jobs and providers     |
+| **Developer** | Submit and monitor jobs       |
+| **Viewer**    | Read-only access              |
+| **Billing**   | Access to cost and usage data |
 
 Permissions are granular and can be customized:
 
@@ -98,20 +98,14 @@ Permissions are granular and can be customized:
 function checkPermission(user, resource, action) {
   // Get user's role
   const role = rolesService.getRole(user.roleId);
-  
+
   // Check if role has permission
-  if (role.permissions.some(p => 
-    p.resource === resource && 
-    p.actions.includes(action)
-  )) {
+  if (role.permissions.some((p) => p.resource === resource && p.actions.includes(action))) {
     return true;
   }
-  
+
   // Check for resource-specific permissions
-  return user.permissions.some(p => 
-    p.resource === resource && 
-    p.actions.includes(action)
-  );
+  return user.permissions.some((p) => p.resource === resource && p.actions.includes(action));
 }
 ```
 
@@ -132,37 +126,31 @@ class EncryptedField {
   constructor(key) {
     this.key = key;
   }
-  
+
   encrypt(value) {
     const iv = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv('aes-256-gcm', this.key, iv);
-    
-    const encrypted = Buffer.concat([
-      cipher.update(value, 'utf8'),
-      cipher.final()
-    ]);
-    
+
+    const encrypted = Buffer.concat([cipher.update(value, 'utf8'), cipher.final()]);
+
     const authTag = cipher.getAuthTag();
-    
+
     return {
       iv: iv.toString('hex'),
       data: encrypted.toString('hex'),
-      tag: authTag.toString('hex')
+      tag: authTag.toString('hex'),
     };
   }
-  
+
   decrypt(encryptedValue) {
     const iv = Buffer.from(encryptedValue.iv, 'hex');
     const data = Buffer.from(encryptedValue.data, 'hex');
     const authTag = Buffer.from(encryptedValue.tag, 'hex');
-    
+
     const decipher = crypto.createDecipheriv('aes-256-gcm', this.key, iv);
     decipher.setAuthTag(authTag);
-    
-    return Buffer.concat([
-      decipher.update(data),
-      decipher.final()
-    ]).toString('utf8');
+
+    return Buffer.concat([decipher.update(data), decipher.final()]).toString('utf8');
   }
 }
 ```
@@ -185,14 +173,14 @@ class SecretsManager {
       action: 'secret_access',
       secretName,
       userId: context.userId,
-      timestamp: new Date()
+      timestamp: new Date(),
     });
-    
+
     // Check permission
-    if (!await this.hasPermission(context.userId, secretName, 'read')) {
+    if (!(await this.hasPermission(context.userId, secretName, 'read'))) {
       throw new Error('Access denied');
     }
-    
+
     // Retrieve from vault
     return await vaultClient.getSecret(`cortex/${secretName}`);
   }
@@ -229,19 +217,19 @@ const rateLimiter = new RateLimiter({
   max: 100, // limit each IP to 100 requests per windowMs
   standardHeaders: true,
   legacyHeaders: false,
-  
+
   // Custom key generator based on API key or IP
   keyGenerator: (req) => {
     return req.apiKey?.id || req.ip;
   },
-  
+
   // Different limits for different endpoints
   handler: (req, res, next, options) => {
     res.status(429).json({
       error: 'Too many requests, please try again later.',
-      retryAfter: options.windowMs / 1000
+      retryAfter: options.windowMs / 1000,
     });
-  }
+  },
 });
 ```
 
@@ -315,12 +303,12 @@ class AuditLogger {
       timestamp: new Date(),
       environment: process.env.NODE_ENV,
       version: process.env.APP_VERSION,
-      correlationId: getCorrelationId()
+      correlationId: getCorrelationId(),
     };
-    
+
     // Write to secure log storage
     await this.logStorage.write(enrichedEvent);
-    
+
     // Forward to SIEM if configured
     if (this.siemEnabled) {
       await this.siemClient.send(enrichedEvent);

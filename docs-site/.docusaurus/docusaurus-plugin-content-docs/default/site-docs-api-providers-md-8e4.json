@@ -1,0 +1,27 @@
+{
+  "id": "api/providers",
+  "title": "Providers API",
+  "description": "The Providers API allows you to configure, manage, and monitor DePIN network providers in your Cortex instance.",
+  "source": "@site/docs/api/providers.md",
+  "sourceDirName": "api",
+  "slug": "/api/providers",
+  "permalink": "/docs/api/providers",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/api/providers.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Jobs API",
+    "permalink": "/docs/api/jobs"
+  },
+  "next": {
+    "title": "Webhooks API",
+    "permalink": "/docs/api/webhooks"
+  }
+}

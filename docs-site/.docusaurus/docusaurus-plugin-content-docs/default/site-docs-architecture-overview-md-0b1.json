@@ -1,0 +1,27 @@
+{
+  "id": "architecture/overview",
+  "title": "Architecture Overview",
+  "description": "Cortex is designed as a modular, extensible platform for orchestrating compute workloads across decentralized physical infrastructure networks (DePINs). This document provides a high-level overview of the Cortex architecture.",
+  "source": "@site/docs/architecture/overview.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/overview",
+  "permalink": "/docs/architecture/overview",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/architecture/overview.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Webhooks API",
+    "permalink": "/docs/api/webhooks"
+  },
+  "next": {
+    "title": "Atomic Commitment Protocol",
+    "permalink": "/docs/architecture/atomic-commitment"
+  }
+}

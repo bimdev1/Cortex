@@ -15,10 +15,10 @@ interface FormValidation {
   duration: string;
 }
 
-export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({ 
-  onSubmit, 
-  loading, 
-  providers 
+export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({
+  onSubmit,
+  loading,
+  providers,
 }) => {
   const [formData, setFormData] = useState({
     provider: 'akash',
@@ -43,25 +43,25 @@ export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({
         if (!value || typeof value !== 'string') return 'Docker image is required';
         if (!value.includes(':')) return 'Image should include a tag (e.g., nginx:alpine)';
         return '';
-      
+
       case 'cpu':
         const cpuNum = Number(value);
         if (!cpuNum || cpuNum < 50) return 'CPU must be at least 50 millicores';
         if (cpuNum > 8000) return 'CPU cannot exceed 8000 millicores';
         return '';
-      
+
       case 'memory':
         if (!value || typeof value !== 'string') return 'Memory is required';
         const memoryPattern = /^\d+(Mi|Gi)$/;
         if (!memoryPattern.test(value)) return 'Memory format should be like 512Mi or 2Gi';
         return '';
-      
+
       case 'duration':
         const durationNum = Number(value);
         if (!durationNum || durationNum < 60) return 'Duration must be at least 60 seconds';
         if (durationNum > 86400) return 'Duration cannot exceed 24 hours';
         return '';
-      
+
       default:
         return '';
     }
@@ -76,12 +76,12 @@ export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({
     };
 
     setErrors(newErrors);
-    return !Object.values(newErrors).some(error => error !== '');
+    return !Object.values(newErrors).some((error) => error !== '');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       toast.error('Please fix the validation errors');
       return;
@@ -91,12 +91,12 @@ export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({
       toast.error('No providers available. Please check network status.');
       return;
     }
-    
+
     // Parse environment variables
     const env: Record<string, string> = {};
     if (formData.env.trim()) {
       try {
-        formData.env.split('\n').forEach(line => {
+        formData.env.split('\n').forEach((line) => {
           const [key, value] = line.split('=');
           if (key && value) {
             env[key.trim()] = value.trim();
@@ -122,14 +122,14 @@ export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({
   };
 
   const handleInputChange = (field: string, value: any) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
 
     // Clear error when user starts typing
     if (errors[field as keyof FormValidation]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [field]: '',
       }));
@@ -137,9 +137,10 @@ export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({
   };
 
   const getInputClassName = (field: keyof FormValidation) => {
-    const baseClass = "block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm";
-    return errors[field] 
-      ? `${baseClass} border-red-300 dark:border-red-600` 
+    const baseClass =
+      'block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm';
+    return errors[field]
+      ? `${baseClass} border-red-300 dark:border-red-600`
       : `${baseClass} border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white`;
   };
 
@@ -153,18 +154,21 @@ export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 bg-white dark:bg-gray-800 p-6 rounded-lg shadow"
+    >
       <div>
         <label className="flex items-center space-x-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           <span>Provider</span>
           <FieldHelp content="Select which decentralized network to deploy your job on. Each provider has different pricing and capabilities." />
         </label>
-        <select 
-          value={formData.provider} 
+        <select
+          value={formData.provider}
           onChange={(e) => handleInputChange('provider', e.target.value)}
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white"
         >
-          {providers.map(provider => (
+          {providers.map((provider) => (
             <option key={provider.network} value={provider.network}>
               {provider.name} {provider.connected ? '✓' : '✗'}
             </option>
@@ -279,20 +283,36 @@ export const JobSubmissionForm: React.FC<JobSubmissionFormProps> = ({
         />
       </div>
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         disabled={loading || providers.length === 0}
         className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
           loading || providers.length === 0
-            ? 'bg-gray-400 cursor-not-allowed' 
+            ? 'bg-gray-400 cursor-not-allowed'
             : 'bg-blue-600 hover:bg-blue-700'
         }`}
       >
         {loading ? (
           <div className="flex items-center">
-            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <svg
+              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
             </svg>
             Submitting...
           </div>

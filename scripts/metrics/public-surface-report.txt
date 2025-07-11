@@ -1,0 +1,21 @@
+Public API Surface Analysis
+Generated: 2025-07-11T21:41:58.020Z
+
+PACKAGE EXPORTS:
+@cortex/plugin-core: 0 exports ✅
+@cortex/job-poller: 1 exports ✅
+
+DETAILED EXPORTS:
+
+@cortex/plugin-core:
+
+
+@cortex/job-poller:
+  - export { JobPoller };
+
+SUMMARY:
+- Total packages analyzed: 2
+- Total exports across all packages: 1
+- Packages exceeding 10 export limit: 0
+- Violating packages: None
+- Status: COMPLIANT

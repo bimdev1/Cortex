@@ -1,0 +1,27 @@
+{
+  "id": "guide/network-providers",
+  "title": "Network Providers",
+  "description": "This guide covers the DePIN network providers supported by Cortex, their unique features, configuration requirements, and best practices for each.",
+  "source": "@site/docs/guide/network-providers.md",
+  "sourceDirName": "guide",
+  "slug": "/guide/network-providers",
+  "permalink": "/docs/guide/network-providers",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/guide/network-providers.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Job Management",
+    "permalink": "/docs/guide/job-management"
+  },
+  "next": {
+    "title": "Cost Optimization",
+    "permalink": "/docs/guide/cost-optimization"
+  }
+}

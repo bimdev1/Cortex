@@ -1,0 +1,27 @@
+{
+  "id": "getting-started/first-job",
+  "title": "Your First Job",
+  "description": "This guide walks you through submitting your first computational job on Cortex, explaining each step in detail.",
+  "source": "@site/docs/getting-started/first-job.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/first-job",
+  "permalink": "/docs/getting-started/first-job",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/getting-started/first-job.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Quick Start Guide",
+    "permalink": "/docs/getting-started/quick-start"
+  },
+  "next": {
+    "title": "Dashboard Overview",
+    "permalink": "/docs/guide/dashboard"
+  }
+}

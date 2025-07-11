@@ -13,18 +13,23 @@ Cortex is the "WordPress of distributed computing" - a platform that abstracts a
 ## Why Cortex?
 
 ### 🌐 **Multi-Network Access**
+
 Access compute resources from Akash Network, Render Network, Golem, Bittensor, and io.net through a single dashboard.
 
 ### 💰 **Massive Cost Savings**
+
 Save 15-30x compared to traditional cloud providers by leveraging decentralized infrastructure pricing.
 
 ### ⚡ **Intelligent Routing**
+
 Our platform automatically selects the best network based on your requirements for cost, performance, and availability.
 
 ### 📊 **Real-Time Monitoring**
+
 Track job progress, costs, and network status with built-in dashboards and live updates.
 
 ### 🔒 **Enterprise Security**
+
 Built with security-first principles, including atomic job commitment and Byzantine fault tolerance.
 
 ## How It Works

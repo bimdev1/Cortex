@@ -1,0 +1,27 @@
+{
+  "id": "architecture/atomic-commitment",
+  "title": "Atomic Commitment Protocol",
+  "description": "Cortex implements a robust atomic commitment protocol to ensure data consistency across distributed DePIN networks. This document explains how Cortex maintains transaction integrity when working with multiple decentralized systems.",
+  "source": "@site/docs/architecture/atomic-commitment.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/atomic-commitment",
+  "permalink": "/docs/architecture/atomic-commitment",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/architecture/atomic-commitment.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Architecture Overview",
+    "permalink": "/docs/architecture/overview"
+  },
+  "next": {
+    "title": "Security Architecture",
+    "permalink": "/docs/architecture/security"
+  }
+}

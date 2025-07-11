@@ -1,16 +1,16 @@
 export interface IDePINProvider {
   readonly name: string;
   readonly network: string;
-  
+
   // Core job management methods
   submitJob(jobConfig: JobConfiguration): Promise<JobSubmissionResult>;
   pollStatus(jobId: string): Promise<JobStatus>;
   cancelJob(jobId: string): Promise<JobCancellationResult>;
-  
+
   // Network health and pricing
   getNetworkStatus(): Promise<NetworkHealth>;
   estimateCost(jobConfig: JobConfiguration): Promise<CostEstimate>;
-  
+
   // Connection management
   connect(): Promise<void>;
   disconnect(): Promise<void>;

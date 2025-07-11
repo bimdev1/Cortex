@@ -25,7 +25,7 @@ A job object represents a compute workload in Cortex:
   "endedAt": null,
   "cost": {
     "current": 0.023,
-    "projected": 0.10,
+    "projected": 0.1,
     "currency": "USD"
   },
   "config": {
@@ -56,15 +56,15 @@ GET /api/plugin-core/jobs
 
 ### Query Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | string | Filter by status (pending, running, completed, failed) |
-| `provider` | string | Filter by provider network |
-| `from` | string | Filter by creation date (ISO format) |
-| `to` | string | Filter by creation date (ISO format) |
-| `page` | number | Page number for pagination |
-| `limit` | number | Items per page (default: 20, max: 100) |
-| `sort` | string | Sort field and direction (e.g., createdAt:desc) |
+| Parameter  | Type   | Description                                            |
+| ---------- | ------ | ------------------------------------------------------ |
+| `status`   | string | Filter by status (pending, running, completed, failed) |
+| `provider` | string | Filter by provider network                             |
+| `from`     | string | Filter by creation date (ISO format)                   |
+| `to`       | string | Filter by creation date (ISO format)                   |
+| `page`     | number | Page number for pagination                             |
+| `limit`    | number | Items per page (default: 20, max: 100)                 |
+| `sort`     | string | Sort field and direction (e.g., createdAt:desc)        |
 
 ### Example Request
 
@@ -93,10 +93,10 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/jobs?status=runnin
       "endedAt": null,
       "cost": {
         "current": 0.023,
-        "projected": 0.10,
+        "projected": 0.1,
         "currency": "USD"
       }
-    },
+    }
     // Additional jobs...
   ],
   "meta": {
@@ -144,7 +144,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/jobs/job_1a2b3c4d5
     "endedAt": null,
     "cost": {
       "current": 0.023,
-      "projected": 0.10,
+      "projected": 0.1,
       "currency": "USD"
     },
     "config": {
@@ -190,19 +190,19 @@ POST /api/plugin-core/jobs
 
 ### Request Body
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `provider` | string | Yes | Provider network (akash, render, golem, etc.) |
-| `image` | string | Yes | Docker image name and tag |
-| `cpu` | number | Yes | CPU millicores (1000m = 1 CPU) |
-| `memory` | string | Yes | Memory with units (e.g., "512Mi", "2Gi") |
-| `storage` | string | Yes | Storage with units (e.g., "1Gi", "100Gi") |
-| `duration` | number | Yes | Maximum runtime in seconds |
-| `env` | object | No | Environment variables as key-value pairs |
-| `ports` | array | No | Port configurations |
-| `volumes` | array | No | Volume mount configurations |
-| `command` | array | No | Container command override |
-| `args` | array | No | Container args override |
+| Field      | Type   | Required | Description                                   |
+| ---------- | ------ | -------- | --------------------------------------------- |
+| `provider` | string | Yes      | Provider network (akash, render, golem, etc.) |
+| `image`    | string | Yes      | Docker image name and tag                     |
+| `cpu`      | number | Yes      | CPU millicores (1000m = 1 CPU)                |
+| `memory`   | string | Yes      | Memory with units (e.g., "512Mi", "2Gi")      |
+| `storage`  | string | Yes      | Storage with units (e.g., "1Gi", "100Gi")     |
+| `duration` | number | Yes      | Maximum runtime in seconds                    |
+| `env`      | object | No       | Environment variables as key-value pairs      |
+| `ports`    | array  | No       | Port configurations                           |
+| `volumes`  | array  | No       | Volume mount configurations                   |
+| `command`  | array  | No       | Container command override                    |
+| `args`     | array  | No       | Container args override                       |
 
 ### Example Request
 
@@ -248,7 +248,7 @@ curl -X POST "https://your-cortex-instance.com/api/plugin-core/jobs" \
     "endedAt": null,
     "cost": {
       "current": 0,
-      "projected": 0.10,
+      "projected": 0.1,
       "currency": "USD"
     }
   }
@@ -292,11 +292,11 @@ GET /api/plugin-core/jobs/:id/logs
 
 ### Query Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `tail` | number | Number of recent log lines to return |
-| `follow` | boolean | Stream logs in real-time (SSE) |
-| `since` | string | Return logs since timestamp (ISO format) |
+| Parameter | Type    | Description                              |
+| --------- | ------- | ---------------------------------------- |
+| `tail`    | number  | Number of recent log lines to return     |
+| `follow`  | boolean | Stream logs in real-time (SSE)           |
+| `since`   | string  | Return logs since timestamp (ISO format) |
 
 ### Example Request
 
@@ -340,8 +340,8 @@ const eventSource = new EventSource(
   'https://your-cortex-instance.com/api/plugin-core/jobs/job_1a2b3c4d5e6f/logs?follow=true',
   {
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY'
-    }
+      Authorization: 'Bearer YOUR_API_KEY',
+    },
   }
 );
 
@@ -366,9 +366,9 @@ GET /api/plugin-core/jobs/:id/metrics
 
 ### Query Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `period` | string | Time period (1h, 6h, 24h, 7d) |
+| Parameter    | Type   | Description                        |
+| ------------ | ------ | ---------------------------------- |
+| `period`     | string | Time period (1h, 6h, 24h, 7d)      |
 | `resolution` | string | Data point resolution (1m, 5m, 1h) |
 
 ### Example Request
@@ -462,10 +462,7 @@ POST /api/plugin-core/jobs/batch
 {
   "success": true,
   "data": {
-    "jobIds": [
-      "job_1a2b3c4d5e6f",
-      "job_2a3b4c5d6e7f"
-    ],
+    "jobIds": ["job_1a2b3c4d5e6f", "job_2a3b4c5d6e7f"],
     "status": "submitted"
   }
 }
@@ -525,16 +522,16 @@ POST /api/plugin-core/jobs/from-template/:templateId
 
 ## Error Handling
 
-| HTTP Code | Error Code | Description |
-|-----------|------------|-------------|
-| 400 | `VALIDATION_ERROR` | Invalid request parameters |
-| 401 | `UNAUTHORIZED` | Missing or invalid API key |
-| 403 | `FORBIDDEN` | Insufficient permissions |
-| 404 | `JOB_NOT_FOUND` | Job not found |
-| 409 | `PROVIDER_CONFLICT` | Provider-specific conflict |
-| 429 | `RATE_LIMIT_EXCEEDED` | Too many requests |
-| 500 | `INTERNAL_ERROR` | Server error |
-| 503 | `PROVIDER_UNAVAILABLE` | Provider network unavailable |
+| HTTP Code | Error Code             | Description                  |
+| --------- | ---------------------- | ---------------------------- |
+| 400       | `VALIDATION_ERROR`     | Invalid request parameters   |
+| 401       | `UNAUTHORIZED`         | Missing or invalid API key   |
+| 403       | `FORBIDDEN`            | Insufficient permissions     |
+| 404       | `JOB_NOT_FOUND`        | Job not found                |
+| 409       | `PROVIDER_CONFLICT`    | Provider-specific conflict   |
+| 429       | `RATE_LIMIT_EXCEEDED`  | Too many requests            |
+| 500       | `INTERNAL_ERROR`       | Server error                 |
+| 503       | `PROVIDER_UNAVAILABLE` | Provider network unavailable |
 
 ## Webhooks
 

@@ -14,16 +14,16 @@ Cortex follows a plugin-based microservices architecture with a clear separation
 
 ### Core Components
 
-| Component | Description |
-|-----------|-------------|
-| **Core Engine** | Central orchestration layer that manages jobs, providers, and system state |
-| **Plugin System** | Extensible framework for adding new providers, features, and integrations |
-| **Provider Adapters** | Network-specific adapters for interacting with DePIN networks |
-| **Job Service** | Manages job lifecycle, scheduling, and execution |
-| **Database** | Persistent storage for system state and job history |
-| **API Layer** | RESTful and GraphQL APIs for external integrations |
-| **UI Dashboard** | Web-based user interface for system management |
-| **Background Workers** | Asynchronous task processors for long-running operations |
+| Component              | Description                                                                |
+| ---------------------- | -------------------------------------------------------------------------- |
+| **Core Engine**        | Central orchestration layer that manages jobs, providers, and system state |
+| **Plugin System**      | Extensible framework for adding new providers, features, and integrations  |
+| **Provider Adapters**  | Network-specific adapters for interacting with DePIN networks              |
+| **Job Service**        | Manages job lifecycle, scheduling, and execution                           |
+| **Database**           | Persistent storage for system state and job history                        |
+| **API Layer**          | RESTful and GraphQL APIs for external integrations                         |
+| **UI Dashboard**       | Web-based user interface for system management                             |
+| **Background Workers** | Asynchronous task processors for long-running operations                   |
 
 ## Data Flow
 
@@ -67,7 +67,7 @@ interface IDePINProvider {
   submitJob(job: JobConfiguration): Promise<JobSubmissionResult>;
   getJobStatus(jobId: string): Promise<JobStatusResult>;
   cancelJob(jobId: string): Promise<boolean>;
-  
+
   // Provider-specific capabilities
   getCapabilities(): ProviderCapabilities;
   getPricing(): Promise<PricingInfo>;
@@ -87,7 +87,7 @@ eventEmitter.emit('job.status.changed', {
   jobId: 'job_1a2b3c4d5e6f',
   previousStatus: 'pending',
   newStatus: 'running',
-  timestamp: new Date()
+  timestamp: new Date(),
 });
 
 // Event subscription
@@ -102,16 +102,16 @@ This approach enables loose coupling between components and facilitates real-tim
 
 Cortex uses a relational database with the following core tables:
 
-| Table | Description |
-|-------|-------------|
-| `jobs` | Job definitions and metadata |
-| `job_status` | Historical job status records |
-| `providers` | Provider configurations |
+| Table             | Description                        |
+| ----------------- | ---------------------------------- |
+| `jobs`            | Job definitions and metadata       |
+| `job_status`      | Historical job status records      |
+| `providers`       | Provider configurations            |
 | `provider_status` | Historical provider status records |
-| `users` | User accounts and permissions |
-| `api_keys` | API authentication keys |
-| `webhooks` | Webhook configurations |
-| `events` | System event log |
+| `users`           | User accounts and permissions      |
+| `api_keys`        | API authentication keys            |
+| `webhooks`        | Webhook configurations             |
+| `events`          | System event log                   |
 
 ## Security Model
 

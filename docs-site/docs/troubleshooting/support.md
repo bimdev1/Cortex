@@ -72,16 +72,16 @@ Have an idea for improving Cortex?
 
 Cortex offers several tiers of commercial support:
 
-| Feature | Community | Standard | Premium | Enterprise |
-|---------|-----------|----------|---------|------------|
-| Support Channels | Forum, Discord | Email, Portal | Email, Portal, Phone | Email, Portal, Phone, Dedicated Slack |
-| Response Time | Best effort | < 24 hours | < 8 hours | < 2 hours |
-| Support Hours | Community | 9x5 | 24x5 | 24x7 |
-| Named Contacts | 0 | 2 | 5 | 10+ |
-| Technical Account Manager | No | No | Yes | Yes |
-| Quarterly Reviews | No | No | Yes | Yes |
-| Custom SLAs | No | No | No | Yes |
-| Price | Free | Contact Sales | Contact Sales | Contact Sales |
+| Feature                   | Community      | Standard      | Premium              | Enterprise                            |
+| ------------------------- | -------------- | ------------- | -------------------- | ------------------------------------- |
+| Support Channels          | Forum, Discord | Email, Portal | Email, Portal, Phone | Email, Portal, Phone, Dedicated Slack |
+| Response Time             | Best effort    | < 24 hours    | < 8 hours            | < 2 hours                             |
+| Support Hours             | Community      | 9x5           | 24x5                 | 24x7                                  |
+| Named Contacts            | 0              | 2             | 5                    | 10+                                   |
+| Technical Account Manager | No             | No            | Yes                  | Yes                                   |
+| Quarterly Reviews         | No             | No            | Yes                  | Yes                                   |
+| Custom SLAs               | No             | No            | No                   | Yes                                   |
+| Price                     | Free           | Contact Sales | Contact Sales        | Contact Sales                         |
 
 ### Enterprise Support Features
 
@@ -172,12 +172,12 @@ Cortex versions follow this support lifecycle:
 
 ### Severity Levels and Response Times
 
-| Severity | Description | Standard | Premium | Enterprise |
-|----------|-------------|----------|---------|------------|
-| S1 - Critical | Production system down or unusable | 24 hours | 4 hours | 1 hour |
-| S2 - High | Major feature/function failure | 48 hours | 8 hours | 4 hours |
-| S3 - Medium | Minor feature/function failure | 72 hours | 24 hours | 8 hours |
-| S4 - Low | General questions, feature requests | 96 hours | 48 hours | 24 hours |
+| Severity      | Description                         | Standard | Premium  | Enterprise |
+| ------------- | ----------------------------------- | -------- | -------- | ---------- |
+| S1 - Critical | Production system down or unusable  | 24 hours | 4 hours  | 1 hour     |
+| S2 - High     | Major feature/function failure      | 48 hours | 8 hours  | 4 hours    |
+| S3 - Medium   | Minor feature/function failure      | 72 hours | 24 hours | 8 hours    |
+| S4 - Low      | General questions, feature requests | 96 hours | 48 hours | 24 hours   |
 
 Response times are in business hours for Standard support and clock hours for Premium and Enterprise support.
 

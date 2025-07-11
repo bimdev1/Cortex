@@ -15,7 +15,7 @@ export default defineCollection({
       unique: true,
       validate: {
         isEmail: true,
-      }
+      },
     },
     {
       type: 'string',
@@ -36,8 +36,8 @@ export default defineCollection({
       name: 'role',
       defaultValue: 'user',
       validate: {
-        isIn: [['admin', 'user', 'viewer']]
-      }
+        isIn: [['admin', 'user', 'viewer']],
+      },
     },
     {
       type: 'boolean',

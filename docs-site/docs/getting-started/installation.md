@@ -30,6 +30,7 @@ docker-compose up -d
 ```
 
 This will start:
+
 - Cortex API server on port 13000
 - Web dashboard on port 3000
 - Background workers for job polling
@@ -66,6 +67,7 @@ yarn dev:workers
 To connect to DePIN networks, you'll need to configure provider credentials:
 
 1. Copy the example config files:
+
    ```bash
    cp config/providers/akash.example.json config/providers/akash.json
    ```
@@ -112,15 +114,18 @@ To verify your installation is working correctly:
 ### Common Issues
 
 **API server won't start**
+
 - Check database connection settings
 - Verify port 13000 is not in use by another application
 
 **Provider connection fails**
+
 - Verify your provider credentials
 - Check network connectivity to provider endpoints
 - Ensure your wallet has sufficient funds
 
 **Workers not processing jobs**
+
 - Check worker logs: `docker-compose logs -f worker`
 - Verify message queue connection
 

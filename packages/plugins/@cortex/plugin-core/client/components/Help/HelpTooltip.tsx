@@ -6,10 +6,10 @@ interface HelpTooltipProps {
   children: React.ReactNode;
 }
 
-export const HelpTooltip: React.FC<HelpTooltipProps> = ({ 
-  content, 
-  position = 'top', 
-  children 
+export const HelpTooltip: React.FC<HelpTooltipProps> = ({
+  content,
+  position = 'top',
+  children,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -44,13 +44,13 @@ export const HelpTooltip: React.FC<HelpTooltipProps> = ({
   };
 
   return (
-    <div 
+    <div
       className="relative inline-block"
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
     >
       {children}
-      
+
       {isVisible && (
         <div className={`absolute z-50 ${getPositionClasses()}`}>
           <div className="bg-gray-800 text-white text-xs rounded py-1 px-2 max-w-xs whitespace-normal">

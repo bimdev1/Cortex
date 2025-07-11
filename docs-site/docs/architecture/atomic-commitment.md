@@ -34,10 +34,10 @@ During the preparation phase:
 // Simplified coordinator code
 async function prepareTransaction(txId: string, providers: IDePINProvider[]) {
   const responses = await Promise.all(
-    providers.map(provider => provider.prepare(txId, operationData))
+    providers.map((provider) => provider.prepare(txId, operationData))
   );
-  
-  return responses.every(response => response.status === 'ready');
+
+  return responses.every((response) => response.status === 'ready');
 }
 ```
 
@@ -54,9 +54,7 @@ Based on the preparation results:
 // Simplified commit phase
 async function commitTransaction(txId: string, providers: IDePINProvider[]) {
   try {
-    await Promise.all(
-      providers.map(provider => provider.commit(txId))
-    );
+    await Promise.all(providers.map((provider) => provider.commit(txId)));
     return true;
   } catch (error) {
     // Handle commit failures
@@ -110,7 +108,7 @@ When the system restarts after a failure:
 // Simplified recovery process
 async function recoverTransactions() {
   const pendingTxs = await transactionLog.getPendingTransactions();
-  
+
   for (const tx of pendingTxs) {
     if (tx.status === 'preparing' && isTimedOut(tx)) {
       await rollbackTransaction(tx.txId, getProviders(tx.participants));
@@ -133,14 +131,14 @@ Cortex implements timeout mechanisms to prevent indefinite blocking:
 
 ```typescript
 // Timeout configuration
-const PREPARE_TIMEOUT_MS = 30000;  // 30 seconds
-const COMMIT_TIMEOUT_MS = 60000;   // 60 seconds
+const PREPARE_TIMEOUT_MS = 30000; // 30 seconds
+const COMMIT_TIMEOUT_MS = 60000; // 60 seconds
 
 // Heuristic resolution
 async function resolveHeuristically(txId: string) {
   const tx = await transactionLog.getTransaction(txId);
   const readyCount = countReadyParticipants(tx);
-  
+
   if (readyCount / tx.participants.length > 0.75) {
     // More than 75% ready, attempt commit
     return commitTransaction(txId, getProviders(tx.participants));
@@ -166,18 +164,18 @@ For blockchain-based DePIN networks, Cortex implements additional safeguards:
 async function monitorBlockchainTransaction(network: string, txHash: string) {
   let confirmations = 0;
   const requiredConfirmations = getRequiredConfirmations(network);
-  
+
   while (confirmations < requiredConfirmations) {
     await sleep(blockTime);
     const status = await getTransactionStatus(network, txHash);
-    
+
     if (status === 'confirmed') {
       confirmations++;
     } else if (status === 'failed' || status === 'rejected') {
       throw new Error(`Transaction failed on ${network}`);
     }
   }
-  
+
   return true;
 }
 ```
@@ -202,13 +200,13 @@ All operations in Cortex are designed to be idempotent:
 // Idempotent job submission
 async function submitJob(jobConfig: JobConfiguration) {
   const jobId = generateIdempotentId(jobConfig);
-  
+
   // Check if job already exists
   const existingJob = await jobService.findJob(jobId);
   if (existingJob) {
     return existingJob;
   }
-  
+
   // Create new job
   return jobService.createJob(jobId, jobConfig);
 }
@@ -225,17 +223,17 @@ For operations that cannot be easily rolled back, Cortex uses compensation trans
 ```typescript
 // Compensation example
 const compensations = {
-  'create_deployment': async (txData) => {
+  create_deployment: async (txData) => {
     await providerAdapter.deleteDeployment(txData.deploymentId);
   },
-  'fund_wallet': async (txData) => {
+  fund_wallet: async (txData) => {
     await providerAdapter.withdrawFunds(txData.walletId, txData.amount);
-  }
+  },
 };
 
 async function executeCompensation(txId: string) {
   const tx = await transactionLog.getTransaction(txId);
-  
+
   // Execute compensations in reverse order
   for (const step of [...tx.steps].reverse()) {
     await compensations[step.operation](step.data);
@@ -247,12 +245,12 @@ async function executeCompensation(txId: string) {
 
 Cortex supports multiple consistency levels for different use cases:
 
-| Consistency Level | Description | Use Case |
-|------------------|-------------|----------|
-| **Strong** | Full 2PC with all safeguards | Financial transactions |
-| **Eventual** | Asynchronous updates with retries | Status updates, metrics |
-| **Read-your-writes** | Immediate local updates | UI responsiveness |
-| **Best-effort** | No guarantees | Non-critical operations |
+| Consistency Level    | Description                       | Use Case                |
+| -------------------- | --------------------------------- | ----------------------- |
+| **Strong**           | Full 2PC with all safeguards      | Financial transactions  |
+| **Eventual**         | Asynchronous updates with retries | Status updates, metrics |
+| **Read-your-writes** | Immediate local updates           | UI responsiveness       |
+| **Best-effort**      | No guarantees                     | Non-critical operations |
 
 ## Performance Optimizations
 

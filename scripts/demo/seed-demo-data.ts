@@ -1,8 +1,10 @@
-const crypto = require('crypto');
-const fs = require('fs');
-const path = require('path');
+import { randomUUID } from 'crypto';
+import { writeFileSync, mkdirSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const randomUUID = () => crypto.randomUUID();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 interface MockJob {
   id: string;
@@ -53,13 +55,13 @@ class DemoDataSeeder {
 
   async seedData(): Promise<void> {
     console.log('📊 Generating demo data...');
-    
+
     this.generateNetworkStatus();
     this.generateJobs();
     this.generateCostData();
-    
+
     await this.persistData();
-    
+
     console.log('✅ Demo data seeded successfully!');
     this.printSummary();
   }
@@ -73,7 +75,7 @@ class DemoDataSeeder {
         status: 'online' as const,
         latency: 45 + Math.floor(Math.random() * 20),
         availableNodes: 1200 + Math.floor(Math.random() * 300),
-        currentPrice: 0.048 + (Math.random() * 0.02),
+        currentPrice: 0.048 + Math.random() * 0.02,
       },
       {
         name: 'Render Network',
@@ -82,16 +84,16 @@ class DemoDataSeeder {
         status: 'online' as const,
         latency: 78 + Math.floor(Math.random() * 25),
         availableNodes: 890 + Math.floor(Math.random() * 200),
-        currentPrice: 0.156 + (Math.random() * 0.04),
+        currentPrice: 0.156 + Math.random() * 0.04,
       },
       {
         name: 'Golem Network',
         network: 'golem',
         connected: Math.random() > 0.3,
-        status: Math.random() > 0.8 ? 'degraded' as const : 'online' as const,
+        status: Math.random() > 0.8 ? ('degraded' as const) : ('online' as const),
         latency: 120 + Math.floor(Math.random() * 30),
         availableNodes: 650 + Math.floor(Math.random() * 150),
-        currentPrice: 0.025 + (Math.random() * 0.01),
+        currentPrice: 0.025 + Math.random() * 0.01,
       },
       {
         name: 'Bittensor',
@@ -100,7 +102,7 @@ class DemoDataSeeder {
         status: 'online' as const,
         latency: 52 + Math.floor(Math.random() * 18),
         availableNodes: 420 + Math.floor(Math.random() * 100),
-        currentPrice: 0.087 + (Math.random() * 0.03),
+        currentPrice: 0.087 + Math.random() * 0.03,
       },
       {
         name: 'io.net',
@@ -109,11 +111,11 @@ class DemoDataSeeder {
         status: 'online' as const,
         latency: 61 + Math.floor(Math.random() * 22),
         availableNodes: 780 + Math.floor(Math.random() * 180),
-        currentPrice: 0.074 + (Math.random() * 0.025),
+        currentPrice: 0.074 + Math.random() * 0.025,
       },
     ];
 
-    this.networks = networks.map(network => ({
+    this.networks = networks.map((network) => ({
       ...network,
       lastChecked: new Date().toISOString(),
     }));
@@ -181,7 +183,7 @@ class DemoDataSeeder {
       const createdAt = new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000); // Last 7 days
       const isCompleted = Math.random() > 0.3; // 70% completed
       const isRunning = !isCompleted && Math.random() > 0.5; // 50% of non-completed are running
-      
+
       let status: MockJob['status'];
       let completedAt: string | undefined;
       let startedAt: string | undefined;
@@ -190,7 +192,9 @@ class DemoDataSeeder {
       if (isCompleted) {
         status = Math.random() > 0.1 ? 'completed' : 'failed'; // 90% success rate
         startedAt = new Date(createdAt.getTime() + Math.random() * 300000).toISOString(); // Started within 5 min
-        completedAt = new Date(createdAt.getTime() + template.duration * 1000 + Math.random() * 600000).toISOString();
+        completedAt = new Date(
+          createdAt.getTime() + template.duration * 1000 + Math.random() * 600000
+        ).toISOString();
         actualCost = template.cpu * 0.00005 * (template.duration / 3600) + Math.random() * 0.001;
       } else if (isRunning) {
         status = 'running';
@@ -248,45 +252,39 @@ class DemoDataSeeder {
   private async persistData(): Promise<void> {
     // In a real implementation, this would write to the database
     // For demo purposes, we'll write to JSON files that can be imported
-    
+
     const fs = require('fs');
     const path = require('path');
-    
+
     const demoDir = path.join(__dirname, '../../storage/demo');
-    
+
     // Ensure demo directory exists
     if (!fs.existsSync(demoDir)) {
       fs.mkdirSync(demoDir, { recursive: true });
     }
 
     // Write data to JSON files
-    fs.writeFileSync(
-      path.join(demoDir, 'jobs.json'), 
-      JSON.stringify(this.jobs, null, 2)
-    );
-    
-    fs.writeFileSync(
-      path.join(demoDir, 'networks.json'), 
-      JSON.stringify(this.networks, null, 2)
-    );
-    
-    fs.writeFileSync(
-      path.join(demoDir, 'cost-data.json'), 
-      JSON.stringify(this.costData, null, 2)
-    );
+    fs.writeFileSync(path.join(demoDir, 'jobs.json'), JSON.stringify(this.jobs, null, 2));
+
+    fs.writeFileSync(path.join(demoDir, 'networks.json'), JSON.stringify(this.networks, null, 2));
+
+    fs.writeFileSync(path.join(demoDir, 'cost-data.json'), JSON.stringify(this.costData, null, 2));
 
     console.log(`📁 Demo data written to ${demoDir}`);
   }
 
   private printSummary(): void {
-    const statusCounts = this.jobs.reduce((acc, job) => {
-      acc[job.status] = (acc[job.status] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
+    const statusCounts = this.jobs.reduce(
+      (acc, job) => {
+        acc[job.status] = (acc[job.status] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
 
     const totalEstimated = this.jobs.reduce((sum, job) => sum + job.estimatedCost, 0);
     const totalActual = this.jobs.reduce((sum, job) => sum + (job.actualCost || 0), 0);
-    const onlineNetworks = this.networks.filter(n => n.connected).length;
+    const onlineNetworks = this.networks.filter((n) => n.connected).length;
 
     console.log('\n📈 Demo Data Summary:');
     console.log(`   Jobs: ${this.jobs.length} total`);
@@ -302,12 +300,12 @@ class DemoDataSeeder {
 }
 
 // CLI execution
-if (require.main === module) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const seeder = new DemoDataSeeder();
-  seeder.seedData().catch(error => {
-    console.error('❌ Failed to seed demo data:', error);
+  seeder.seedData().catch((error: unknown) => {
+    console.error('❌ Failed to seed demo data:', error instanceof Error ? error.message : String(error));
     process.exit(1);
   });
 }
 
-module.exports = { DemoDataSeeder };
+export { DemoDataSeeder };

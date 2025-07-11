@@ -1,11 +1,10 @@
-const { chromium } = require('playwright');
-const path = require('path');
-const fs = require('fs');
-const fsPromises = require('fs/promises');
+import { chromium, type Page, type Browser } from 'playwright';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { mkdir, writeFile } from 'fs/promises';
 
-const join = path.join;
-const mkdir = fsPromises.mkdir;
-const writeFile = fsPromises.writeFile;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 interface ScreenshotConfig {
   name: string;
@@ -35,10 +34,10 @@ class ScreenshotGenerator {
     });
 
     this.page = await this.browser.newPage();
-    
+
     // Set viewport for consistent screenshots
     await this.page.setViewportSize({ width: 1920, height: 1080 });
-    
+
     // Ensure output directory exists
     await mkdir(this.outputDir, { recursive: true });
   }
@@ -49,7 +48,7 @@ class ScreenshotGenerator {
     }
 
     const baseUrl = 'http://localhost:13000';
-    
+
     const screenshots: ScreenshotConfig[] = [
       {
         name: 'dashboard-overview',
@@ -78,7 +77,8 @@ class ScreenshotGenerator {
       {
         name: 'network-status-panel',
         url: `${baseUrl}/`,
-        selector: '.bg-white.dark\\:bg-gray-800.rounded-lg.shadow.p-6:has(h3:contains("Live Network Status"))',
+        selector:
+          '.bg-white.dark\\:bg-gray-800.rounded-lg.shadow.p-6:has(h3:contains("Live Network Status"))',
         waitFor: 2000,
       },
       {
@@ -110,8 +110,8 @@ class ScreenshotGenerator {
     for (const config of screenshots) {
       try {
         await this.captureScreenshot(config);
-      } catch (error) {
-        console.error(`❌ Failed to capture ${config.name}:`, error.message);
+      } catch (error: unknown) {
+        console.error(`❌ Failed to capture ${config.name}:`, error instanceof Error ? error.message : String(error));
       }
     }
 
@@ -139,9 +139,9 @@ class ScreenshotGenerator {
 
     // Set custom viewport if specified
     if (config.width && config.height) {
-      await this.page.setViewportSize({ 
-        width: config.width, 
-        height: config.height 
+      await this.page.setViewportSize({
+        width: config.width,
+        height: config.height,
       });
     }
 
@@ -170,10 +170,10 @@ class ScreenshotGenerator {
 
     // Create a simple logo placeholder
     await this.generateLogo();
-    
+
     // Create feature icons
     await this.generateFeatureIcons();
-    
+
     // Generate social media cards
     await this.generateSocialCards();
   }
@@ -216,7 +216,7 @@ class ScreenshotGenerator {
           <circle cx="80" cy="80" r="15" fill="#2563eb"/>
           <circle cx="60" cy="60" r="10" fill="#1d4ed8"/>
           <path d="M40 40 L60 60 M80 40 L60 60 M40 80 L60 60 M80 80 L60 60" stroke="#1e40af" stroke-width="2"/>
-        </svg>`
+        </svg>`,
       },
       {
         name: 'cost-optimization',
@@ -232,7 +232,7 @@ class ScreenshotGenerator {
           <path d="M30 60 L90 60" stroke="#94a3b8" stroke-width="1"/>
           <path d="M30 50 L90 50" stroke="#94a3b8" stroke-width="1"/>
           <path d="M30 40 L90 40" stroke="#94a3b8" stroke-width="1"/>
-        </svg>`
+        </svg>`,
       },
       {
         name: 'real-time-monitoring',
@@ -248,8 +248,8 @@ class ScreenshotGenerator {
           <circle cx="85" cy="60" r="3" fill="#2563eb"/>
           <circle cx="60" cy="85" r="3" fill="#2563eb"/>
           <circle cx="35" cy="60" r="3" fill="#2563eb"/>
-        </svg>`
-      }
+        </svg>`,
+      },
     ];
 
     for (const icon of icons) {
@@ -353,7 +353,7 @@ class ScreenshotGenerator {
 }
 
 // CLI execution
-if (require.main === module) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   (async () => {
     const generator = new ScreenshotGenerator();
     try {
@@ -362,7 +362,7 @@ if (require.main === module) {
       await generator.generateDemoAssets();
       console.log('\n🎯 All screenshots and assets generated successfully!');
     } catch (error) {
-      console.error('❌ Error generating screenshots:', error);
+      console.error('❌ Error generating screenshots:', error instanceof Error ? error.message : String(error));
       process.exit(1);
     } finally {
       await generator.cleanup();
@@ -370,4 +370,4 @@ if (require.main === module) {
   })();
 }
 
-module.exports = { ScreenshotGenerator };
+export { ScreenshotGenerator };

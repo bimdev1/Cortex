@@ -1,0 +1,27 @@
+{
+  "id": "guide/cost-optimization",
+  "title": "Cost Optimization",
+  "description": "This guide covers strategies and best practices for optimizing costs when using Cortex to manage decentralized compute workloads.",
+  "source": "@site/docs/guide/cost-optimization.md",
+  "sourceDirName": "guide",
+  "slug": "/guide/cost-optimization",
+  "permalink": "/docs/guide/cost-optimization",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/guide/cost-optimization.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Network Providers",
+    "permalink": "/docs/guide/network-providers"
+  },
+  "next": {
+    "title": "API Overview",
+    "permalink": "/docs/api/overview"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "api/jobs",
+              "path": "/docs/api/jobs",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "api/overview",
+              "path": "/docs/api/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "api/providers",
+              "path": "/docs/api/providers",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "api/webhooks",
+              "path": "/docs/api/webhooks",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "architecture/atomic-commitment",
+              "path": "/docs/architecture/atomic-commitment",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "architecture/overview",
+              "path": "/docs/architecture/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "architecture/security",
+              "path": "/docs/architecture/security",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "getting-started/first-job",
+              "path": "/docs/getting-started/first-job",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "getting-started/installation",
+              "path": "/docs/getting-started/installation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "getting-started/quick-start",
+              "path": "/docs/getting-started/quick-start",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "guide/cost-optimization",
+              "path": "/docs/guide/cost-optimization",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "guide/dashboard",
+              "path": "/docs/guide/dashboard",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "guide/job-management",
+              "path": "/docs/guide/job-management",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "guide/network-providers",
+              "path": "/docs/guide/network-providers",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "troubleshooting/common-issues",
+              "path": "/docs/troubleshooting/common-issues",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "troubleshooting/debugging",
+              "path": "/docs/troubleshooting/debugging",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "troubleshooting/support",
+              "path": "/docs/troubleshooting/support",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

@@ -30,7 +30,11 @@
 }
 
 .hero--primary {
-  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-dark) 100%
+  );
 }
 
 .hero__title {
@@ -105,7 +109,7 @@ table th {
   .hero__title {
     font-size: 2.5rem;
   }
-  
+
   .hero__subtitle {
     font-size: 1.2rem;
   }

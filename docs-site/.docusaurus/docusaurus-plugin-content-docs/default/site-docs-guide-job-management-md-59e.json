@@ -1,0 +1,27 @@
+{
+  "id": "guide/job-management",
+  "title": "Job Management",
+  "description": "This guide covers advanced job management features in Cortex, including job lifecycle, monitoring, troubleshooting, and automation.",
+  "source": "@site/docs/guide/job-management.md",
+  "sourceDirName": "guide",
+  "slug": "/guide/job-management",
+  "permalink": "/docs/guide/job-management",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/guide/job-management.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Dashboard Overview",
+    "permalink": "/docs/guide/dashboard"
+  },
+  "next": {
+    "title": "Network Providers",
+    "permalink": "/docs/guide/network-providers"
+  }
+}

@@ -22,8 +22,8 @@ export default defineCollection({
       name: 'status',
       defaultValue: 'pending',
       validate: {
-        isIn: [['pending', 'running', 'completed', 'failed', 'cancelled']]
-      }
+        isIn: [['pending', 'running', 'completed', 'failed', 'cancelled']],
+      },
     },
     {
       type: 'json',

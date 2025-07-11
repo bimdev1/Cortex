@@ -40,6 +40,7 @@ Let's deploy a simple nginx web server:
 ## Step 4: Monitor Progress
 
 Your job will appear in the **Recent Jobs** table with:
+
 - A unique Job ID
 - Current status (pending → running → completed)
 - Real-time cost tracking
@@ -48,6 +49,7 @@ Your job will appear in the **Recent Jobs** table with:
 ## Step 5: View Results
 
 Once your job status shows "completed":
+
 1. Check the **Actual Cost** column for final pricing
 2. View any output logs or files
 3. The nginx server would be accessible if ports were configured
@@ -79,6 +81,7 @@ curl -X POST http://localhost:13000/api/plugin-core/jobs \
 ## Troubleshooting
 
 **Job stuck in "pending" status?**
+
 - Check that the selected network is online
 - Verify your resource requirements are within network limits
 - Ensure sufficient balance if using a pay-per-use model

@@ -14,7 +14,7 @@ class ScreenshotGenerator {
 
   async initialize() {
     console.log('🚀 Launching browser...');
-    
+
     // Try multiple possible paths for Chromium in the Playwright Docker image
     const possiblePaths = [
       '/ms-playwright/chromium-1060/chrome-linux/chrome',
@@ -25,12 +25,12 @@ class ScreenshotGenerator {
       '/ms-playwright/chromium-1181/chrome-linux/chrome',
       '/usr/bin/google-chrome',
       '/usr/bin/chromium',
-      '/usr/bin/chromium-browser'
+      '/usr/bin/chromium-browser',
     ];
-    
+
     let browser = null;
     let usedPath = null;
-    
+
     for (const executablePath of possiblePaths) {
       try {
         console.log(`Trying browser at: ${executablePath}`);
@@ -47,18 +47,18 @@ class ScreenshotGenerator {
         console.log(`Failed with path ${executablePath}: ${error.message}`);
       }
     }
-    
+
     if (!browser) {
       throw new Error('Could not find a working Chromium browser');
     }
-    
+
     console.log(`✅ Successfully launched browser using: ${usedPath}`);
     this.browser = browser;
     this.page = await this.browser.newPage();
-    
+
     // Set viewport for consistent screenshots
     await this.page.setViewportSize({ width: 1920, height: 1080 });
-    
+
     // Ensure output directory exists
     await fsPromises.mkdir(this.outputDir, { recursive: true });
   }
@@ -69,7 +69,7 @@ class ScreenshotGenerator {
     }
 
     const baseUrl = 'http://localhost:13000';
-    
+
     const screenshots = [
       {
         name: 'dashboard-overview',
@@ -88,7 +88,7 @@ class ScreenshotGenerator {
         url: `${baseUrl}/`,
         selector: '.grid.grid-cols-1.md\\:grid-cols-4',
         waitFor: 1500,
-      }
+      },
     ];
 
     console.log(`📷 Generating ${screenshots.length} screenshots...`);
@@ -237,13 +237,15 @@ class ScreenshotGenerator {
           return;
         }
       } catch (error) {
-        console.log(`   ⚠️ Selector not found: ${config.selector}, taking full page screenshot instead`);
+        console.log(
+          `   ⚠️ Selector not found: ${config.selector}, taking full page screenshot instead`
+        );
       }
     }
 
     await this.page.screenshot(screenshotOptions);
     console.log(`   ✓ Saved: ${config.name}.png`);
-    
+
     // Clean up temp file
     try {
       await fsPromises.unlink(tempHtmlPath);
@@ -257,7 +259,7 @@ class ScreenshotGenerator {
 
     // Create a simple logo placeholder
     await this.generateLogo();
-    
+
     // Generate social media cards
     await this.generateSocialCards();
   }

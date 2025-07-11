@@ -73,11 +73,11 @@ For errors:
 
 API requests are rate-limited to protect the system from abuse:
 
-| Plan | Rate Limit |
-|------|------------|
-| Free | 60 requests per minute |
-| Pro | 300 requests per minute |
-| Enterprise | Custom limits |
+| Plan       | Rate Limit              |
+| ---------- | ----------------------- |
+| Free       | 60 requests per minute  |
+| Pro        | 300 requests per minute |
+| Enterprise | Custom limits           |
 
 Rate limit headers are included in all responses:
 
@@ -91,15 +91,15 @@ X-RateLimit-Reset: 1625097600
 
 The API is organized into logical namespaces:
 
-| Namespace | Description | Base Path |
-|-----------|-------------|-----------|
-| Jobs | Job management | `/api/plugin-core/jobs` |
+| Namespace | Description            | Base Path                    |
+| --------- | ---------------------- | ---------------------------- |
+| Jobs      | Job management         | `/api/plugin-core/jobs`      |
 | Providers | Provider configuration | `/api/plugin-core/providers` |
-| Networks | Network status | `/api/plugin-core/networks` |
-| Webhooks | Event notifications | `/api/plugin-core/webhooks` |
-| Auth | Authentication | `/api/auth` |
-| Users | User management | `/api/users` |
-| System | System operations | `/api/system` |
+| Networks  | Network status         | `/api/plugin-core/networks`  |
+| Webhooks  | Event notifications    | `/api/plugin-core/webhooks`  |
+| Auth      | Authentication         | `/api/auth`                  |
+| Users     | User management        | `/api/users`                 |
+| System    | System operations      | `/api/system`                |
 
 ## Common Operations
 
@@ -112,6 +112,7 @@ GET /api/plugin-core/jobs?page=2&limit=10
 ```
 
 Parameters:
+
 - `page`: Page number (default: 1)
 - `limit`: Items per page (default: 20, max: 100)
 
@@ -165,16 +166,20 @@ const socket = new WebSocket('wss://your-cortex-instance.com/ws');
 
 socket.onopen = () => {
   // Authenticate
-  socket.send(JSON.stringify({
-    type: 'auth',
-    token: 'YOUR_API_KEY'
-  }));
-  
+  socket.send(
+    JSON.stringify({
+      type: 'auth',
+      token: 'YOUR_API_KEY',
+    })
+  );
+
   // Subscribe to job updates
-  socket.send(JSON.stringify({
-    type: 'subscribe',
-    channel: 'jobs'
-  }));
+  socket.send(
+    JSON.stringify({
+      type: 'subscribe',
+      channel: 'jobs',
+    })
+  );
 };
 
 socket.onmessage = (event) => {
@@ -184,6 +189,7 @@ socket.onmessage = (event) => {
 ```
 
 Available channels:
+
 - `jobs`: Job status updates
 - `networks`: Network status changes
 - `system`: System notifications
@@ -213,7 +219,7 @@ import { CortexClient } from '@cortex/client';
 
 const client = new CortexClient({
   baseUrl: 'https://your-cortex-instance.com',
-  apiKey: 'YOUR_API_KEY'
+  apiKey: 'YOUR_API_KEY',
 });
 
 const jobs = await client.jobs.list();
@@ -257,13 +263,13 @@ Detailed documentation for each API endpoint:
 
 ### Common Error Codes
 
-| Code | Description | Solution |
-|------|-------------|----------|
-| `AUTH_INVALID` | Invalid API key | Check your API key |
-| `RATE_LIMIT_EXCEEDED` | Too many requests | Implement backoff strategy |
-| `RESOURCE_NOT_FOUND` | Resource doesn't exist | Verify resource ID |
-| `VALIDATION_ERROR` | Invalid request data | Check request parameters |
-| `PROVIDER_ERROR` | Provider-specific error | Check provider status |
+| Code                  | Description             | Solution                   |
+| --------------------- | ----------------------- | -------------------------- |
+| `AUTH_INVALID`        | Invalid API key         | Check your API key         |
+| `RATE_LIMIT_EXCEEDED` | Too many requests       | Implement backoff strategy |
+| `RESOURCE_NOT_FOUND`  | Resource doesn't exist  | Verify resource ID         |
+| `VALIDATION_ERROR`    | Invalid request data    | Check request parameters   |
+| `PROVIDER_ERROR`      | Provider-specific error | Check provider status      |
 
 ### Debugging Tools
 

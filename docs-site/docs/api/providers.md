@@ -17,9 +17,7 @@ A provider object represents a connection to a DePIN network:
   "type": "akash",
   "status": "online",
   "version": "0.20.0",
-  "endpoints": [
-    "https://akash-rpc.polkachu.com:443"
-  ],
+  "endpoints": ["https://akash-rpc.polkachu.com:443"],
   "metrics": {
     "latency": 120,
     "uptime": 99.8,
@@ -52,10 +50,10 @@ GET /api/plugin-core/providers
 
 ### Query Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | string | Filter by status (online, offline, degraded) |
-| `type` | string | Filter by provider type (akash, render, golem, etc.) |
+| Parameter | Type   | Description                                          |
+| --------- | ------ | ---------------------------------------------------- |
+| `status`  | string | Filter by status (online, offline, degraded)         |
+| `type`    | string | Filter by provider type (akash, render, golem, etc.) |
 
 ### Example Request
 
@@ -75,9 +73,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/providers?status=o
       "name": "Akash Network",
       "type": "akash",
       "status": "online",
-      "endpoints": [
-        "https://akash-rpc.polkachu.com:443"
-      ],
+      "endpoints": ["https://akash-rpc.polkachu.com:443"],
       "metrics": {
         "latency": 120,
         "uptime": 99.8
@@ -94,16 +90,14 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/providers?status=o
       "name": "Render Network",
       "type": "render",
       "status": "online",
-      "endpoints": [
-        "https://api.render.com/v1"
-      ],
+      "endpoints": ["https://api.render.com/v1"],
       "metrics": {
         "latency": 85,
         "uptime": 99.9
       },
       "pricing": {
         "cpu": 0.03,
-        "gpu": 0.50,
+        "gpu": 0.5,
         "memory": 0.02,
         "storage": 0.002,
         "currency": "USD"
@@ -139,9 +133,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/providers/provider
     "type": "akash",
     "status": "online",
     "version": "0.20.0",
-    "endpoints": [
-      "https://akash-rpc.polkachu.com:443"
-    ],
+    "endpoints": ["https://akash-rpc.polkachu.com:443"],
     "metrics": {
       "latency": 120,
       "uptime": 99.8,
@@ -176,12 +168,12 @@ POST /api/plugin-core/providers
 
 ### Request Body
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `name` | string | Yes | Display name for the provider |
-| `type` | string | Yes | Provider type (akash, render, golem, etc.) |
-| `endpoints` | array | Yes | Array of provider endpoints |
-| `config` | object | Yes | Provider-specific configuration |
+| Field       | Type   | Required | Description                                |
+| ----------- | ------ | -------- | ------------------------------------------ |
+| `name`      | string | Yes      | Display name for the provider              |
+| `type`      | string | Yes      | Provider type (akash, render, golem, etc.) |
+| `endpoints` | array  | Yes      | Array of provider endpoints                |
+| `config`    | object | Yes      | Provider-specific configuration            |
 
 ### Example Request
 
@@ -217,9 +209,7 @@ curl -X POST "https://your-cortex-instance.com/api/plugin-core/providers" \
     "name": "Akash Network",
     "type": "akash",
     "status": "initializing",
-    "endpoints": [
-      "https://akash-rpc.polkachu.com:443"
-    ],
+    "endpoints": ["https://akash-rpc.polkachu.com:443"],
     "createdAt": "2025-07-10T12:34:56Z",
     "updatedAt": "2025-07-10T12:34:56Z"
   }
@@ -263,10 +253,7 @@ curl -X PUT "https://your-cortex-instance.com/api/plugin-core/providers/provider
     "name": "Akash Network Main",
     "type": "akash",
     "status": "online",
-    "endpoints": [
-      "https://akash-rpc.polkachu.com:443",
-      "https://rpc-akash.ecostake.com:443"
-    ],
+    "endpoints": ["https://akash-rpc.polkachu.com:443", "https://rpc-akash.ecostake.com:443"],
     "updatedAt": "2025-07-10T13:45:30Z"
   }
 }
@@ -349,11 +336,11 @@ GET /api/plugin-core/providers/:id/metrics
 
 ### Query Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `period` | string | Time period (1h, 6h, 24h, 7d, 30d) |
-| `resolution` | string | Data point resolution (5m, 1h, 1d) |
-| `metrics` | string | Comma-separated list of metrics to include |
+| Parameter    | Type   | Description                                |
+| ------------ | ------ | ------------------------------------------ |
+| `period`     | string | Time period (1h, 6h, 24h, 7d, 30d)         |
+| `resolution` | string | Data point resolution (5m, 1h, 1d)         |
+| `metrics`    | string | Comma-separated list of metrics to include |
 
 ### Example Request
 
@@ -376,7 +363,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/providers/provider
       {
         "timestamp": "2025-07-09T15:00:00Z",
         "value": 120
-      },
+      }
       // Additional data points...
     ],
     "jobsCompleted": [
@@ -387,7 +374,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/providers/provider
       {
         "timestamp": "2025-07-09T15:00:00Z",
         "value": 5
-      },
+      }
       // Additional data points...
     ]
   }
@@ -486,11 +473,11 @@ GET /api/plugin-core/providers/:id/jobs
 
 ### Query Parameters
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | string | Filter by job status |
-| `page` | number | Page number for pagination |
-| `limit` | number | Items per page |
+| Parameter | Type   | Description                |
+| --------- | ------ | -------------------------- |
+| `status`  | string | Filter by job status       |
+| `page`    | number | Page number for pagination |
+| `limit`   | number | Items per page             |
 
 ### Example Request
 
@@ -512,7 +499,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/providers/provider
       "cpu": 1000,
       "memory": "512Mi",
       "createdAt": "2025-07-10T12:34:56Z"
-    },
+    }
     // Additional jobs...
   ],
   "meta": {
@@ -595,16 +582,16 @@ Each provider type requires specific configuration parameters:
 
 ## Error Handling
 
-| HTTP Code | Error Code | Description |
-|-----------|------------|-------------|
-| 400 | `VALIDATION_ERROR` | Invalid request parameters |
-| 401 | `UNAUTHORIZED` | Missing or invalid API key |
-| 403 | `FORBIDDEN` | Insufficient permissions |
-| 404 | `PROVIDER_NOT_FOUND` | Provider not found |
-| 409 | `PROVIDER_CONFLICT` | Provider ID already exists |
-| 429 | `RATE_LIMIT_EXCEEDED` | Too many requests |
-| 500 | `INTERNAL_ERROR` | Server error |
-| 503 | `PROVIDER_UNAVAILABLE` | Provider network unavailable |
+| HTTP Code | Error Code             | Description                  |
+| --------- | ---------------------- | ---------------------------- |
+| 400       | `VALIDATION_ERROR`     | Invalid request parameters   |
+| 401       | `UNAUTHORIZED`         | Missing or invalid API key   |
+| 403       | `FORBIDDEN`            | Insufficient permissions     |
+| 404       | `PROVIDER_NOT_FOUND`   | Provider not found           |
+| 409       | `PROVIDER_CONFLICT`    | Provider ID already exists   |
+| 429       | `RATE_LIMIT_EXCEEDED`  | Too many requests            |
+| 500       | `INTERNAL_ERROR`       | Server error                 |
+| 503       | `PROVIDER_UNAVAILABLE` | Provider network unavailable |
 
 ## Webhooks
 

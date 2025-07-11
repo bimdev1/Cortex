@@ -1,0 +1,27 @@
+{
+  "id": "guide/dashboard",
+  "title": "Dashboard Overview",
+  "description": "The Cortex Dashboard provides a centralized interface for monitoring and managing your decentralized compute operations. This guide walks you through the key components and features of the dashboard.",
+  "source": "@site/docs/guide/dashboard.md",
+  "sourceDirName": "guide",
+  "slug": "/guide/dashboard",
+  "permalink": "/docs/guide/dashboard",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/guide/dashboard.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Your First Job",
+    "permalink": "/docs/getting-started/first-job"
+  },
+  "next": {
+    "title": "Job Management",
+    "permalink": "/docs/guide/job-management"
+  }
+}

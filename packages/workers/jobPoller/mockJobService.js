@@ -16,7 +16,7 @@ class JobService {
 
   emit(event, data) {
     if (this.eventListeners[event]) {
-      this.eventListeners[event].forEach(listener => listener(data));
+      this.eventListeners[event].forEach((listener) => listener(data));
     }
     return true;
   }
@@ -38,11 +38,11 @@ class JobService {
       throw new Error(`Job ${jobId} not found`);
     }
     const job = this.jobs.get(jobId);
-    const status = { 
-      jobId, 
+    const status = {
+      jobId,
       status: job.status || 'running',
       provider: job.provider,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
     return status;
   }

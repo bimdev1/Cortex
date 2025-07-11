@@ -11,9 +11,7 @@ const app = new Application({
     password: process.env.DB_PASSWORD || 'cortex123',
     database: process.env.DB_DATABASE || 'cortex',
   },
-  plugins: [
-    resolve(__dirname, '../../../plugins/@cortex/plugin-core'),
-  ],
+  plugins: [resolve(__dirname, '../../../plugins/@cortex/plugin-core')],
 } as any);
 
 if (require.main === module) {

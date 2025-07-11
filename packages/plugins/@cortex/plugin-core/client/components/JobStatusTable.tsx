@@ -6,19 +6,21 @@ interface JobStatusTableProps {
   onRefresh: () => void;
 }
 
-export const JobStatusTable: React.FC<JobStatusTableProps> = ({ 
-  jobs, 
-  onCancel, 
-  onRefresh 
-}) => {
+export const JobStatusTable: React.FC<JobStatusTableProps> = ({ jobs, onCancel, onRefresh }) => {
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed': return '#28a745';
-      case 'running': return '#007bff';
-      case 'failed': return '#dc3545';
-      case 'cancelled': return '#6c757d';
-      case 'pending': return '#ffc107';
-      default: return '#6c757d';
+      case 'completed':
+        return '#28a745';
+      case 'running':
+        return '#007bff';
+      case 'failed':
+        return '#dc3545';
+      case 'cancelled':
+        return '#6c757d';
+      case 'pending':
+        return '#ffc107';
+      default:
+        return '#6c757d';
     }
   };
 
@@ -46,13 +48,25 @@ export const JobStatusTable: React.FC<JobStatusTableProps> = ({
         <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #ddd' }}>
           <thead>
             <tr style={{ backgroundColor: '#f8f9fa' }}>
-              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>Job ID</th>
-              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>Provider</th>
-              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>Image</th>
-              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>Status</th>
+              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>
+                Job ID
+              </th>
+              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>
+                Provider
+              </th>
+              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>
+                Image
+              </th>
+              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>
+                Status
+              </th>
               <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>Cost</th>
-              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>Created</th>
-              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>Actions</th>
+              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>
+                Created
+              </th>
+              <th style={{ padding: '10px', border: '1px solid #ddd', textAlign: 'left' }}>
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -68,10 +82,10 @@ export const JobStatusTable: React.FC<JobStatusTableProps> = ({
                   <code style={{ fontSize: '12px' }}>{job.configuration?.image || 'N/A'}</code>
                 </td>
                 <td style={{ padding: '10px', border: '1px solid #ddd' }}>
-                  <span 
-                    style={{ 
-                      padding: '3px 8px', 
-                      borderRadius: '3px', 
+                  <span
+                    style={{
+                      padding: '3px 8px',
+                      borderRadius: '3px',
                       color: 'white',
                       backgroundColor: getStatusColor(job.status),
                       fontSize: '12px',

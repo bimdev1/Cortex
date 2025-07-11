@@ -1,0 +1,27 @@
+{
+  "id": "architecture/security",
+  "title": "Security Architecture",
+  "description": "Cortex is designed with security as a foundational principle. This document outlines the security architecture of the Cortex platform and the measures implemented to protect your data and infrastructure.",
+  "source": "@site/docs/architecture/security.md",
+  "sourceDirName": "architecture",
+  "slug": "/architecture/security",
+  "permalink": "/docs/architecture/security",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/architecture/security.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Atomic Commitment Protocol",
+    "permalink": "/docs/architecture/atomic-commitment"
+  },
+  "next": {
+    "title": "Common Issues",
+    "permalink": "/docs/troubleshooting/common-issues"
+  }
+}

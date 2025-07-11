@@ -16,6 +16,7 @@ module.exports = {
       testEnvironment: 'node',
       moduleNameMapper: {
         '^@cortex/(.*)$': path.join(__dirname, 'packages/plugins/@cortex/$1/src'),
+        '^providers/(.*)$': path.join(__dirname, 'packages/providers/$1'),
       },
     },
   ],

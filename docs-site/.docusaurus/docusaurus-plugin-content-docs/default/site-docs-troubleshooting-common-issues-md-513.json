@@ -1,0 +1,27 @@
+{
+  "id": "troubleshooting/common-issues",
+  "title": "Common Issues",
+  "description": "This guide covers common issues you might encounter when using Cortex and provides troubleshooting steps to resolve them.",
+  "source": "@site/docs/troubleshooting/common-issues.md",
+  "sourceDirName": "troubleshooting",
+  "slug": "/troubleshooting/common-issues",
+  "permalink": "/docs/troubleshooting/common-issues",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/troubleshooting/common-issues.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Security Architecture",
+    "permalink": "/docs/architecture/security"
+  },
+  "next": {
+    "title": "Debugging Techniques",
+    "permalink": "/docs/troubleshooting/debugging"
+  }
+}

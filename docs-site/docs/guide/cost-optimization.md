@@ -10,13 +10,13 @@ This guide covers strategies and best practices for optimizing costs when using 
 
 Decentralized Physical Infrastructure Networks (DePINs) typically offer significant cost advantages over centralized cloud providers, often 15-30x cheaper for equivalent resources. However, each provider has a unique pricing model:
 
-| Provider | Pricing Model | Cost Factors |
-|----------|--------------|-------------|
-| Akash Network | Auction-based | CPU, memory, storage, duration |
-| Render Network | Fixed rate + usage | GPU type, runtime, data transfer |
-| Golem | Market-based | CPU, memory, task complexity |
-| Bittensor | Token-weighted | Query complexity, token stake |
-| io.net | Fixed + variable | Storage size, retrieval frequency, compute |
+| Provider       | Pricing Model      | Cost Factors                               |
+| -------------- | ------------------ | ------------------------------------------ |
+| Akash Network  | Auction-based      | CPU, memory, storage, duration             |
+| Render Network | Fixed rate + usage | GPU type, runtime, data transfer           |
+| Golem          | Market-based       | CPU, memory, task complexity               |
+| Bittensor      | Token-weighted     | Query complexity, token stake              |
+| io.net         | Fixed + variable   | Storage size, retrieval frequency, compute |
 
 ## Cost Monitoring Tools
 
@@ -32,11 +32,13 @@ The Cost Overview chart on the Cortex dashboard provides:
 ### Cost Alerts
 
 Set up cost alerts to be notified when:
+
 - Individual jobs exceed cost thresholds
 - Daily/weekly spending exceeds budgets
 - Unusual spending patterns are detected
 
 To configure alerts:
+
 1. Navigate to **Settings** > **Notifications**
 2. Select **Cost Alerts**
 3. Define your thresholds and notification preferences
@@ -64,6 +66,7 @@ One of the most effective ways to reduce costs is to properly size your resource
 ```
 
 **Tools for right-sizing:**
+
 - Use the **Resource Analyzer** in the job details page
 - Review historical utilization patterns
 - Start small and scale up as needed
@@ -209,12 +212,12 @@ The Cost Forecasting tool uses historical data to predict future expenses:
 
 ## Cost Comparison with Traditional Cloud
 
-| Workload Type | Traditional Cloud | Cortex + DePIN | Savings |
-|---------------|-------------------|---------------|---------|
-| Web Application | $150/month | $10/month | 93% |
-| ML Training (GPU) | $500/day | $50/day | 90% |
-| Data Processing | $200/job | $15/job | 92% |
-| Database Hosting | $100/month | $25/month | 75% |
+| Workload Type     | Traditional Cloud | Cortex + DePIN | Savings |
+| ----------------- | ----------------- | -------------- | ------- |
+| Web Application   | $150/month        | $10/month      | 93%     |
+| ML Training (GPU) | $500/day          | $50/day        | 90%     |
+| Data Processing   | $200/job          | $15/job        | 92%     |
+| Database Hosting  | $100/month        | $25/month      | 75%     |
 
 ## Best Practices Checklist
 

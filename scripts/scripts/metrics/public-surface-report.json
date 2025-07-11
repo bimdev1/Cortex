@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-07-11T22:17:25.319Z",
+  "packages": [
+    {
+      "packageName": "@cortex/plugin-core",
+      "indexPath": "/home/tim/Cortex/packages/plugins/@cortex/plugin-core/index.ts",
+      "exportCount": 20,
+      "exports": [
+        "CoreDashboard",
+        "CostOverviewChart",
+        "LiveNetworkStatus",
+        "FieldHelp",
+        "HelpTooltip",
+        "JobStatusTable",
+        "JobSubmissionForm",
+        "Breadcrumbs",
+        "ErrorBoundary",
+        "GlobalLayout",
+        "Header",
+        "Sidebar",
+        "GetStartedModal",
+        "CoreProvider",
+        "CorePlugin",
+        "default",
+        "* from ./jobService",
+        "* from ./networkService",
+        "JobService",
+        "NetworkService"
+      ]
+    },
+    {
+      "packageName": "@cortex/job-poller",
+      "indexPath": "/home/tim/Cortex/packages/workers/jobPoller/index.ts",
+      "exportCount": 0,
+      "exports": []
+    }
+  ],
+  "totalExports": 20,
+  "packageCount": 2,
+  "violatingPackages": ["@cortex/plugin-core"]
+}

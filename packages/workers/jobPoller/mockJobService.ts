@@ -17,12 +17,12 @@ export class JobService extends EventEmitter {
   constructor() {
     super();
     logger.log('MockJobService initialized');
-    
+
     // Add a sample job for testing
     this.mockActiveJobs.set('job-123', {
       jobId: 'job-123',
       providerJobId: 'provider-456',
-      status: 'running'
+      status: 'running',
     });
   }
 
@@ -32,15 +32,15 @@ export class JobService extends EventEmitter {
       jobId,
       providerJobId: 'provider-456',
       status: 'running',
-      logs: ['Log entry 1', 'Log entry 2']
+      logs: ['Log entry 1', 'Log entry 2'],
     };
   }
 
-  getActiveJobs(): Array<{id: string; status: JobStatusType}> {
+  getActiveJobs(): Array<{ id: string; status: JobStatusType }> {
     // Convert Map to Array format expected by JobPoller
     return Array.from(this.mockActiveJobs.entries()).map(([id, job]) => ({
       id,
-      status: job.status
+      status: job.status,
     }));
   }
 }

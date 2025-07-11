@@ -2,106 +2,106 @@ name: Cortex CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   lint-and-type-check:
     runs-on: ubuntu-22.04
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'yarn'
-        
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
-      
-    - name: Lint TypeScript
-      run: yarn lint
-      
-    - name: Type check all packages
-      run: yarn type-check
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint TypeScript
+        run: yarn lint
+
+      - name: Type check all packages
+        run: yarn type-check
 
   test-plugins:
     runs-on: ubuntu-22.04
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'yarn'
-        
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
-      
-    - name: Test core plugin
-      run: |
-        cd packages/plugins/@cortex/plugin-core
-        yarn test --passWithNoTests
-        
-    - name: Test all plugin workspaces
-      run: yarn workspaces foreach --include '@cortex/*' run test --passWithNoTests
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Test core plugin
+        run: |
+          cd packages/plugins/@cortex/plugin-core
+          yarn test --passWithNoTests
+
+      - name: Test all plugin workspaces
+        run: yarn workspaces foreach --include '@cortex/*' run test --passWithNoTests
 
   test-providers:
     runs-on: ubuntu-22.04
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'yarn'
-        
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
-      
-    - name: Test Akash provider
-      run: |
-        cd packages/providers/akash
-        npx jest --passWithNoTests
-        
-    - name: Test job poller worker
-      run: |
-        cd packages/workers/jobPoller
-        npx jest --passWithNoTests
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Test Akash provider
+        run: |
+          cd packages/providers/akash
+          npx jest --passWithNoTests
+
+      - name: Test job poller worker
+        run: |
+          cd packages/workers/jobPoller
+          npx jest --passWithNoTests
 
   docker-validation:
     runs-on: ubuntu-22.04
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Validate Docker Compose
-      run: docker compose config
-      
-    - name: Build Docker images
-      run: docker compose build --no-cache
-      
-    - name: Test Docker stack startup
-      run: |
-        docker compose up -d
-        sleep 60
-        docker compose ps
-        
-    - name: Test NocoBase health
-      run: |
-        timeout 120 bash -c 'until curl -f http://localhost:13000/api/app:getInfo >/dev/null 2>&1; do sleep 2; done'
-        echo "NocoBase is responding"
-        
-    - name: Cleanup
-      run: docker compose down
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate Docker Compose
+        run: docker compose config
+
+      - name: Build Docker images
+        run: docker compose build --no-cache
+
+      - name: Test Docker stack startup
+        run: |
+          docker compose up -d
+          sleep 60
+          docker compose ps
+
+      - name: Test NocoBase health
+        run: |
+          timeout 120 bash -c 'until curl -f http://localhost:13000/api/app:getInfo >/dev/null 2>&1; do sleep 2; done'
+          echo "NocoBase is responding"
+
+      - name: Cleanup
+        run: docker compose down

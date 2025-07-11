@@ -1,0 +1,27 @@
+{
+  "id": "api/jobs",
+  "title": "Jobs API",
+  "description": "The Jobs API allows you to programmatically submit, monitor, and manage compute jobs across multiple DePIN networks.",
+  "source": "@site/docs/api/jobs.md",
+  "sourceDirName": "api",
+  "slug": "/api/jobs",
+  "permalink": "/docs/api/jobs",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/api/jobs.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "API Overview",
+    "permalink": "/docs/api/overview"
+  },
+  "next": {
+    "title": "Providers API",
+    "permalink": "/docs/api/providers"
+  }
+}

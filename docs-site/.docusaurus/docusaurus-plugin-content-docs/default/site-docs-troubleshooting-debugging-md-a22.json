@@ -1,0 +1,27 @@
+{
+  "id": "troubleshooting/debugging",
+  "title": "Debugging Techniques",
+  "description": "This guide covers advanced debugging techniques to help you diagnose and resolve complex issues in your Cortex deployment.",
+  "source": "@site/docs/troubleshooting/debugging.md",
+  "sourceDirName": "troubleshooting",
+  "slug": "/troubleshooting/debugging",
+  "permalink": "/docs/troubleshooting/debugging",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/troubleshooting/debugging.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Common Issues",
+    "permalink": "/docs/troubleshooting/common-issues"
+  },
+  "next": {
+    "title": "Getting Support",
+    "permalink": "/docs/troubleshooting/support"
+  }
+}

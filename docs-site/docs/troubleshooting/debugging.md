@@ -19,6 +19,7 @@ curl -X POST "https://your-cortex-instance.com/api/system/diagnostics" \
 ```
 
 The diagnostic report includes:
+
 - System health checks
 - Service status
 - Resource utilization
@@ -53,6 +54,7 @@ curl -X PUT "https://your-cortex-instance.com/api/system/logging/level" \
 ```
 
 When debug mode is enabled:
+
 - Additional logs are generated
 - Performance metrics are collected at higher resolution
 - API responses include more detailed error information
@@ -82,6 +84,7 @@ curl -X GET "https://your-cortex-instance.com/api/system/logs?service=job-servic
 ```
 
 Key log parameters:
+
 - `service`: Filter by service name (job-service, provider-adapter, etc.)
 - `level`: Filter by log level (debug, info, warn, error)
 - `from`/`to`: Time range in ISO format
@@ -255,6 +258,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/jobs/{jobId}?debug
 ```
 
 The debug output includes:
+
 - Full job configuration
 - Provider-specific deployment details
 - Resource allocation and usage
@@ -273,6 +277,7 @@ curl -X GET "https://your-cortex-instance.com/api/plugin-core/jobs/{jobId}/conta
 ```
 
 This returns detailed information about the container:
+
 - Process list
 - Resource usage
 - Network connections
@@ -328,6 +333,7 @@ curl -X POST "https://your-cortex-instance.com/api/system/events/trace" \
 ```
 
 Event traces show:
+
 - Event propagation path
 - Processing time at each step
 - Handler execution details
@@ -523,6 +529,7 @@ curl -X POST "https://your-cortex-instance.com/api/system/debug-console" \
 ```
 
 The debug console provides:
+
 - Interactive JavaScript environment
 - Access to internal APIs
 - Real-time system monitoring

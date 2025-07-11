@@ -19,8 +19,8 @@ export default defineCollection({
       name: 'status',
       defaultValue: 'unknown',
       validate: {
-        isIn: [['online', 'offline', 'degraded', 'unknown']]
-      }
+        isIn: [['online', 'offline', 'degraded', 'unknown']],
+      },
     },
     {
       type: 'integer',

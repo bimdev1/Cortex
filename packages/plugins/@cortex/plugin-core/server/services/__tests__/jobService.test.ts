@@ -58,14 +58,14 @@ describe('JobService', () => {
 
     it('should submit job successfully', async () => {
       const result = await jobService.submitJob(mockJobConfig);
-      
+
       expect(result).toMatchObject({
         jobId: 'test-job-123',
         providerJobId: 'akash-job-456',
         status: 'pending',
         estimatedCost: 0.05,
       });
-      
+
       expect(jobService.getActiveJobs().has('test-job-123')).toBe(true);
     });
 
@@ -85,10 +85,10 @@ describe('JobService', () => {
     it('should poll job status successfully', async () => {
       // First submit a job
       await jobService.submitJob(mockJobConfig);
-      
+
       // Then poll its status
       const status = await jobService.pollStatus('test-job-123');
-      
+
       expect(status).toMatchObject({
         jobId: 'test-job-123',
         providerJobId: 'akash-job-456',
@@ -115,26 +115,30 @@ describe('JobService', () => {
     it('should cancel job successfully', async () => {
       // First submit a job
       await jobService.submitJob(mockJobConfig);
-      
+
       // Then cancel it
       const result = await jobService.cancelJob('test-job-123');
-      
+
       expect(result).toMatchObject({
         success: true,
         refund: 0.02,
       });
-      
+
       expect(jobService.getActiveJobs().has('test-job-123')).toBe(false);
     });
 
     it('should throw error for unknown provider', async () => {
       const invalidConfig = { ...mockJobConfig, provider: 'unknown' };
-      
-      await expect(jobService.submitJob(invalidConfig)).rejects.toThrow('Provider unknown not available');
+
+      await expect(jobService.submitJob(invalidConfig)).rejects.toThrow(
+        'Provider unknown not available'
+      );
     });
 
     it('should throw error for non-existent job', async () => {
-      await expect(jobService.pollStatus('non-existent')).rejects.toThrow('Job non-existent not found');
+      await expect(jobService.pollStatus('non-existent')).rejects.toThrow(
+        'Job non-existent not found'
+      );
     });
   });
 
@@ -151,7 +155,7 @@ describe('JobService', () => {
         cpu: 100,
         memory: '512Mi',
       };
-      
+
       const result = await jobService.create(jobConfig);
       expect(result).toHaveProperty('jobId');
     });
@@ -169,7 +173,7 @@ describe('JobService', () => {
         cpu: 100,
         memory: '512Mi',
       });
-      
+
       const result = await jobService.delete('test-job-123');
       expect(result).toMatchObject({ id: 'test-job-123' });
     });

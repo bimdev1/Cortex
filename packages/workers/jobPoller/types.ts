@@ -2,7 +2,7 @@
 // This avoids TypeScript rootDir issues
 
 // Define JobStatusType locally to avoid import path issues
-export type JobStatusType = 
+export type JobStatusType =
   | 'created'
   | 'submitted'
   | 'running'

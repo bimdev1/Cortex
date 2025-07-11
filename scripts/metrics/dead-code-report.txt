@@ -1,0 +1,24 @@
+Dead Code Analysis Report
+Generated: 2025-07-11T21:36:40.085Z
+
+UNUSED EXPORTS (16):
+scripts/demo/generate-screenshots-debian.js:355 - ScreenshotGenerator (used in module)
+scripts/demo/generate-screenshots-docker.js:388 - ScreenshotGenerator (used in module)
+packages/providers/interfaces.ts:70 - PortMapping (used in module)
+packages/workers/jobPoller/logger.ts:2 - Logger (used in module)
+packages/workers/jobPoller/mockJobService.ts:14 - JobService
+packages/core/app/database/migrations/001-initial-tables.ts:3 - default
+packages/core/app/server/collections/computeJobs.ts:3 - default
+packages/core/app/server/collections/networkStatus.ts:3 - default
+packages/core/app/server/collections/users.ts:3 - default
+packages/core/app/server/src/index.ts:21 - default
+packages/plugins/@cortex/plugin-core/client/index.tsx:3 - CoreProvider
+packages/plugins/@cortex/plugin-core/server/plugin.ts:5 - CorePlugin (used in module)
+packages/plugins/@cortex/plugin-core/server/plugin.ts:45 - default
+packages/plugins/@cortex/plugin-core/client/components/CoreDashboard.tsx:10 - CoreDashboard
+packages/plugins/@cortex/plugin-core/server/services/index.ts:13 - JobService
+packages/plugins/@cortex/plugin-core/server/services/index.ts:1 - NetworkService
+
+SUMMARY:
+- Total unused exports: 16
+- Status: NEEDS CLEANUP

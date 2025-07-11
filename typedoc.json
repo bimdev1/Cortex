@@ -1,0 +1,25 @@
+{
+  "entryPointStrategy": "packages",
+  "entryPoints": [
+    "packages/providers",
+    "packages/plugins/@cortex/plugin-core",
+    "packages/workers"
+  ],
+  "out": "docs-site/static/api",
+  "exclude": [
+    "**/__tests__/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  "theme": "default",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "readme": "none",
+  "name": "Cortex API Documentation",
+  "tsconfig": "./tsconfig.json"
+}

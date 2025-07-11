@@ -59,7 +59,7 @@ const response = await fetch('http://localhost:13000/api/plugin-core/jobs', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer YOUR_API_TOKEN'
+    Authorization: 'Bearer YOUR_API_TOKEN',
   },
   body: JSON.stringify({
     provider: 'akash',
@@ -67,8 +67,8 @@ const response = await fetch('http://localhost:13000/api/plugin-core/jobs', {
     cpu: 100,
     memory: '128Mi',
     storage: '100Mi',
-    duration: 300
-  })
+    duration: 300,
+  }),
 });
 
 const job = await response.json();
@@ -88,8 +88,8 @@ You can monitor progress in the dashboard's **Jobs** tab or via API:
 
 ```javascript
 const jobStatus = await fetch(`http://localhost:13000/api/plugin-core/jobs/${jobId}`, {
-  headers: { 'Authorization': 'Bearer YOUR_API_TOKEN' }
-}).then(res => res.json());
+  headers: { Authorization: 'Bearer YOUR_API_TOKEN' },
+}).then((res) => res.json());
 
 console.log('Current status:', jobStatus.status);
 ```

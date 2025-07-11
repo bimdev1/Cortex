@@ -1,5 +1,11 @@
 import { EventEmitter } from 'events';
-import { IDePINProvider, JobConfiguration, JobSubmissionResult, JobStatus, JobStatusType } from '../../../../../providers/interfaces';
+import {
+  IDePINProvider,
+  JobConfiguration,
+  JobSubmissionResult,
+  JobStatus,
+  JobStatusType,
+} from '../../../../../providers/interfaces';
 import { AkashProvider, AkashConfig } from '../../../../../providers/akash';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -20,20 +26,28 @@ export class JobService extends EventEmitter {
       const configData = fs.readFileSync(configPath, 'utf8');
       const akashConfig: AkashConfig = JSON.parse(configData);
       const akashProvider = new AkashProvider(akashConfig);
-    
+
       try {
         await akashProvider.connect();
         this.providers.set('akash', akashProvider);
         console.log('Akash provider initialized successfully');
       } catch (error: unknown) {
-        console.error('Failed to initialize Akash provider:', error instanceof Error ? error.message : error);
+        console.error(
+          'Failed to initialize Akash provider:',
+          error instanceof Error ? error.message : error
+        );
       }
     } catch (error: unknown) {
-      console.error('Failed to load Akash provider configuration:', error instanceof Error ? error.message : error);
+      console.error(
+        'Failed to load Akash provider configuration:',
+        error instanceof Error ? error.message : error
+      );
     }
   }
 
-  async submitJob(jobConfig: JobConfiguration & { provider: string }): Promise<JobSubmissionResult> {
+  async submitJob(
+    jobConfig: JobConfiguration & { provider: string }
+  ): Promise<JobSubmissionResult> {
     const provider = this.providers.get(jobConfig.provider);
     if (!provider) {
       throw new Error(`Provider ${jobConfig.provider} not available`);
@@ -41,7 +55,7 @@ export class JobService extends EventEmitter {
 
     try {
       const result = await provider.submitJob(jobConfig);
-      
+
       // Persist to database (NocoBase collection)
       await this.persistJobToDatabase({
         id: result.jobId,
@@ -84,17 +98,17 @@ export class JobService extends EventEmitter {
     // Determine provider from job configuration
     const jobRecord = await this.getJobFromDatabase(jobId);
     const provider = this.providers.get(jobRecord.configuration.provider);
-    
+
     if (!provider) {
       throw new Error(`Provider not available for job ${jobId}`);
     }
 
     try {
       const status = await provider.pollStatus(jobId);
-      
+
       // Update cache
       this.activeJobs.set(jobId, status);
-      
+
       // Update database
       await this.updateJobInDatabase(jobId, {
         status: status.status,
@@ -115,7 +129,10 @@ export class JobService extends EventEmitter {
 
       return status;
     } catch (error: unknown) {
-      console.error(`Failed to poll status for job ${jobId}:`, error instanceof Error ? error.message : error);
+      console.error(
+        `Failed to poll status for job ${jobId}:`,
+        error instanceof Error ? error.message : error
+      );
       throw error;
     }
   }
@@ -128,14 +145,14 @@ export class JobService extends EventEmitter {
 
     const jobRecord = await this.getJobFromDatabase(jobId);
     const provider = this.providers.get(jobRecord.configuration.provider);
-    
+
     if (!provider) {
       throw new Error(`Provider not available for job ${jobId}`);
     }
 
     try {
       const result = await provider.cancelJob(jobId);
-      
+
       // Update status
       await this.updateJobInDatabase(jobId, {
         status: 'cancelled',
@@ -157,35 +174,45 @@ export class JobService extends EventEmitter {
         refund: result.refund,
       };
     } catch (error: unknown) {
-      console.error(`Failed to cancel job ${jobId}:`, error instanceof Error ? error.message : error);
+      console.error(
+        `Failed to cancel job ${jobId}:`,
+        error instanceof Error ? error.message : error
+      );
       throw error;
     }
   }
 
-  async list(): Promise<Array<{
-    id: string;
-    name: string;
-    status: string;
-    configuration: JobConfiguration & { provider: string };
-    estimatedCost?: number;
-    actualCost?: number;
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-  }>> {
+  async list(): Promise<
+    Array<{
+      id: string;
+      name: string;
+      status: string;
+      configuration: JobConfiguration & { provider: string };
+      estimatedCost?: number;
+      actualCost?: number;
+      createdAt: Date;
+      updatedAt: Date;
+      completedAt?: Date;
+    }>
+  > {
     return await this.getAllJobsFromDatabase();
   }
 
-  async create(data: JobConfiguration & { provider: string; name?: string }): Promise<JobSubmissionResult> {
+  async create(
+    data: JobConfiguration & { provider: string; name?: string }
+  ): Promise<JobSubmissionResult> {
     return await this.submitJob(data);
   }
 
-  async update(id: string, data: {
-    status?: JobStatusType;
-    name?: string;
-    completedAt?: Date;
-    actualCost?: number;
-  }): Promise<{
+  async update(
+    id: string,
+    data: {
+      status?: JobStatusType;
+      name?: string;
+      completedAt?: Date;
+      actualCost?: number;
+    }
+  ): Promise<{
     id: string;
     status?: JobStatusType;
     name?: string;
@@ -196,7 +223,7 @@ export class JobService extends EventEmitter {
     // For now, only support status updates
     const updates = {
       ...data,
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
     await this.updateJobInDatabase(id, updates);
     return { id, ...updates };
@@ -223,7 +250,10 @@ export class JobService extends EventEmitter {
       // Example: await this.app.db.getRepository('computeJobs').create({ values: jobData });
       console.log('Persisting job to database:', jobData.id);
     } catch (error: unknown) {
-      console.error('Failed to persist job to database:', error instanceof Error ? error.message : error);
+      console.error(
+        'Failed to persist job to database:',
+        error instanceof Error ? error.message : error
+      );
       throw new Error(`Database error: Failed to persist job ${jobData.id}`);
     }
   }
@@ -242,65 +272,79 @@ export class JobService extends EventEmitter {
     try {
       // This will query NocoBase's computeJobs collection
       // Example: return await this.app.db.getRepository('computeJobs').findOne({ filter: { id: jobId } });
-      
+
       // For now, return mock data
       return {
         id: jobId,
         name: `Job-${jobId}`,
         status: 'running',
-        configuration: { 
-          provider: 'akash', 
+        configuration: {
+          provider: 'akash',
           image: 'nginx:latest',
-          cpu: 2, 
-          memory: '4Gi', 
+          cpu: 2,
+          memory: '4Gi',
           storage: '10Gi',
           env: { NODE_ENV: 'production' },
-          ports: [{ containerPort: 80, protocol: 'TCP', expose: true }]
+          ports: [{ containerPort: 80, protocol: 'TCP', expose: true }],
         },
         estimatedCost: 0.5,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
     } catch (error: unknown) {
-      console.error(`Failed to retrieve job ${jobId} from database:`, error instanceof Error ? error.message : error);
+      console.error(
+        `Failed to retrieve job ${jobId} from database:`,
+        error instanceof Error ? error.message : error
+      );
       throw new Error(`Database error: Failed to retrieve job ${jobId}`);
     }
   }
 
-  private async updateJobInDatabase(jobId: string, updates: {
-    status?: string;
-    updatedAt?: Date;
-    completedAt?: Date;
-    actualCost?: number;
-    logs?: string[];
-  }): Promise<void> {
+  private async updateJobInDatabase(
+    jobId: string,
+    updates: {
+      status?: string;
+      updatedAt?: Date;
+      completedAt?: Date;
+      actualCost?: number;
+      logs?: string[];
+    }
+  ): Promise<void> {
     try {
       // This will update NocoBase's computeJobs collection
       // Example: await this.app.db.getRepository('computeJobs').update({ filter: { id: jobId }, values: updates });
       console.log('Updating job in database:', jobId, updates);
     } catch (error: unknown) {
-      console.error(`Failed to update job ${jobId} in database:`, error instanceof Error ? error.message : error);
+      console.error(
+        `Failed to update job ${jobId} in database:`,
+        error instanceof Error ? error.message : error
+      );
       throw new Error(`Database error: Failed to update job ${jobId}`);
     }
   }
 
-  private async getAllJobsFromDatabase(): Promise<Array<{
-    id: string;
-    name: string;
-    status: string;
-    configuration: JobConfiguration & { provider: string };
-    estimatedCost?: number;
-    actualCost?: number;
-    createdAt: Date;
-    updatedAt: Date;
-    completedAt?: Date;
-  }>> {
+  private async getAllJobsFromDatabase(): Promise<
+    Array<{
+      id: string;
+      name: string;
+      status: string;
+      configuration: JobConfiguration & { provider: string };
+      estimatedCost?: number;
+      actualCost?: number;
+      createdAt: Date;
+      updatedAt: Date;
+      completedAt?: Date;
+    }>
+  > {
     try {
       // This will query all jobs from NocoBase's computeJobs collection
       // Example: return await this.app.db.getRepository('computeJobs').find();
       return [];
     } catch (error: unknown) {
-      console.error('Failed to retrieve all jobs from database:', error instanceof Error ? error.message : error);
+      console.error(
+        'Failed to retrieve all jobs from database:',
+        error instanceof Error ? error.message : error
+      );
       throw new Error('Database error: Failed to retrieve jobs');
     }
   }

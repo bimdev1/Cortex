@@ -20,10 +20,10 @@ class ScreenshotGenerator {
     });
 
     this.page = await this.browser.newPage();
-    
+
     // Set viewport for consistent screenshots
     await this.page.setViewportSize({ width: 1920, height: 1080 });
-    
+
     // Ensure output directory exists
     await fsPromises.mkdir(this.outputDir, { recursive: true });
   }
@@ -34,7 +34,7 @@ class ScreenshotGenerator {
     }
 
     const baseUrl = 'http://localhost:13000';
-    
+
     const screenshots = [
       {
         name: 'dashboard-overview',
@@ -53,7 +53,7 @@ class ScreenshotGenerator {
         url: `${baseUrl}/`,
         selector: '.grid.grid-cols-1.md\\:grid-cols-4',
         waitFor: 1500,
-      }
+      },
     ];
 
     console.log(`📷 Generating ${screenshots.length} screenshots...`);
@@ -90,9 +90,9 @@ class ScreenshotGenerator {
 
     // Set custom viewport if specified
     if (config.width && config.height) {
-      await this.page.setViewportSize({ 
-        width: config.width, 
-        height: config.height 
+      await this.page.setViewportSize({
+        width: config.width,
+        height: config.height,
       });
     }
 
@@ -121,7 +121,7 @@ class ScreenshotGenerator {
 
     // Create a simple logo placeholder
     await this.generateLogo();
-    
+
     // Generate social media cards
     await this.generateSocialCards();
   }

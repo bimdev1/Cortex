@@ -24,21 +24,12 @@ const sidebars = {
     {
       type: 'category',
       label: 'API Reference',
-      items: [
-        'api/overview',
-        'api/jobs',
-        'api/providers',
-        'api/webhooks',
-      ],
+      items: ['api/overview', 'api/jobs', 'api/providers', 'api/webhooks'],
     },
     {
       type: 'category',
       label: 'Architecture',
-      items: [
-        'architecture/overview',
-        'architecture/atomic-commitment',
-        'architecture/security',
-      ],
+      items: ['architecture/overview', 'architecture/atomic-commitment', 'architecture/security'],
     },
     {
       type: 'category',

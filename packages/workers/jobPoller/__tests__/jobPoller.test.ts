@@ -43,23 +43,23 @@ describe('JobPoller', () => {
   it('should not start if already running', async () => {
     await jobPoller.start();
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
-    
+
     await jobPoller.start(); // Try to start again
-    
+
     expect(consoleSpy).toHaveBeenCalledWith('[JobPoller] Already running');
     consoleSpy.mockRestore();
   });
 
   it('should handle polling cycle gracefully', async () => {
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
-    
+
     await jobPoller.start();
-    
+
     // Wait for at least one polling cycle
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     await jobPoller.stop();
-    
+
     expect(consoleSpy).toHaveBeenCalledWith('[JobPoller] Background worker started successfully');
     consoleSpy.mockRestore();
   });

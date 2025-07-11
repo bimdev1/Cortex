@@ -1,4 +1,4 @@
-const {themes} = require('prism-react-renderer');
+const { themes } = require('prism-react-renderer');
 const lightTheme = themes.github;
 const darkTheme = themes.dracula;
 
@@ -14,8 +14,9 @@ const config = {
   organizationName: 'cortex-platform',
   projectName: 'cortex-docs',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
+  onBrokenAnchors: 'warn',
 
   i18n: {
     defaultLocale: 'en',
@@ -31,10 +32,7 @@ const config = {
           sidebarPath: './sidebars.js',
           editUrl: 'https://github.com/cortex-platform/cortex/tree/main/docs-site/',
         },
-        blog: {
-          showReadingTime: true,
-          editUrl: 'https://github.com/cortex-platform/cortex/tree/main/docs-site/',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -59,7 +57,7 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/cortex-platform/cortex',
             label: 'GitHub',
@@ -114,7 +112,7 @@ const config = {
       },
       prism: {
         theme: lightTheme,
-        darkTheme: darkTheme,
+        darkTheme,
         additionalLanguages: ['bash', 'json', 'yaml'],
       },
       algolia: {

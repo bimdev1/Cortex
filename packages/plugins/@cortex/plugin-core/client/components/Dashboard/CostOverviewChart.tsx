@@ -11,15 +11,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface CostData {
   timestamp: string;
@@ -43,11 +35,11 @@ export const CostOverviewChart: React.FC<CostOverviewChartProps> = ({ data, dark
   }, [data]);
 
   const chartData = {
-    labels: data.map(item => new Date(item.timestamp).toLocaleDateString()),
+    labels: data.map((item) => new Date(item.timestamp).toLocaleDateString()),
     datasets: [
       {
         label: 'Estimated Cost',
-        data: data.map(item => item.estimated),
+        data: data.map((item) => item.estimated),
         borderColor: 'rgb(59, 130, 246)',
         backgroundColor: 'rgba(59, 130, 246, 0.1)',
         tension: 0.4,
@@ -55,7 +47,7 @@ export const CostOverviewChart: React.FC<CostOverviewChartProps> = ({ data, dark
       },
       {
         label: 'Actual Cost',
-        data: data.map(item => item.actual),
+        data: data.map((item) => item.actual),
         borderColor: 'rgb(16, 185, 129)',
         backgroundColor: 'rgba(16, 185, 129, 0.1)',
         tension: 0.4,
@@ -93,7 +85,7 @@ export const CostOverviewChart: React.FC<CostOverviewChartProps> = ({ data, dark
         borderColor: darkMode ? '#4b5563' : '#e5e7eb',
         borderWidth: 1,
         callbacks: {
-          label: function(context: any) {
+          label: function (context: any) {
             return `${context.dataset.label}: $${context.parsed.y.toFixed(4)}`;
           },
         },
@@ -112,7 +104,7 @@ export const CostOverviewChart: React.FC<CostOverviewChartProps> = ({ data, dark
         beginAtZero: true,
         ticks: {
           color: darkMode ? '#9ca3af' : '#6b7280',
-          callback: function(value: any) {
+          callback: function (value: any) {
             return '$' + Number(value).toFixed(2);
           },
         },
@@ -132,7 +124,7 @@ export const CostOverviewChart: React.FC<CostOverviewChartProps> = ({ data, dark
       <div className="chart-container">
         <Line ref={chartRef} data={chartData} options={options} />
       </div>
-      
+
       {data.length > 0 && (
         <div className="mt-4 grid grid-cols-2 gap-4">
           <div className="text-center">

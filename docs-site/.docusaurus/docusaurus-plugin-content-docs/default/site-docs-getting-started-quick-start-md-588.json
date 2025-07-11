@@ -1,0 +1,27 @@
+{
+  "id": "getting-started/quick-start",
+  "title": "Quick Start Guide",
+  "description": "Get your first job running on Cortex in under 5 minutes.",
+  "source": "@site/docs/getting-started/quick-start.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/quick-start",
+  "permalink": "/docs/getting-started/quick-start",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/getting-started/quick-start.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Installation Guide",
+    "permalink": "/docs/getting-started/installation"
+  },
+  "next": {
+    "title": "Your First Job",
+    "permalink": "/docs/getting-started/first-job"
+  }
+}

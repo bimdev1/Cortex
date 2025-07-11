@@ -1,0 +1,27 @@
+{
+  "id": "getting-started/installation",
+  "title": "Installation Guide",
+  "description": "This guide walks you through installing and configuring Cortex on your local machine or server.",
+  "source": "@site/docs/getting-started/installation.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/installation",
+  "permalink": "/docs/getting-started/installation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/cortex-platform/cortex/tree/main/docs-site/docs/getting-started/installation.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Introduction to Cortex",
+    "permalink": "/docs/intro"
+  },
+  "next": {
+    "title": "Quick Start Guide",
+    "permalink": "/docs/getting-started/quick-start"
+  }
+}

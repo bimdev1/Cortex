@@ -24,9 +24,7 @@
       "acl",
       "client"
     ],
-    "local": [
-      "@cortex/plugin-core"
-    ]
+    "local": ["@cortex/plugin-core"]
   },
   "telemetry": {
     "enabled": false

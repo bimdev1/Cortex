@@ -31,8 +31,8 @@ class JobPoller {
   // Using a more specific type definition for the JobService
   private jobService: {
     on: (event: string, listener: Function) => void;
-    getActiveJobs: () => Array<{id: string; status?: JobStatusType}>;
-    pollStatus: (jobId: string) => Promise<{status: JobStatusType; logs?: string[]}>;
+    getActiveJobs: () => Array<{ id: string; status?: JobStatusType }>;
+    pollStatus: (jobId: string) => Promise<{ status: JobStatusType; logs?: string[] }>;
   };
   private pollInterval: number;
   private isRunning = false;
@@ -51,7 +51,7 @@ class JobPoller {
 
     this.jobService.on('jobStatusChanged', (event: JobStatusChangedEvent) => {
       logger.log(`Job ${event.jobId} status: ${event.oldStatus} → ${event.newStatus}`);
-      
+
       if (event.logs && event.logs.length > 0) {
         logger.log(`Latest logs:`, event.logs.slice(-3));
       }
@@ -79,7 +79,10 @@ class JobPoller {
       try {
         await this.pollActiveJobs();
       } catch (error: unknown) {
-        logger.error('Error during polling cycle:', error instanceof Error ? error.message : String(error));
+        logger.error(
+          'Error during polling cycle:',
+          error instanceof Error ? error.message : String(error)
+        );
       }
     }, this.pollInterval);
 
@@ -104,7 +107,7 @@ class JobPoller {
 
   private async pollActiveJobs(): Promise<void> {
     const activeJobs = this.jobService.getActiveJobs();
-    
+
     if (activeJobs.length === 0) {
       return;
     }
@@ -120,7 +123,10 @@ class JobPoller {
 
         await this.jobService.pollStatus(job.id);
       } catch (error: unknown) {
-        logger.error(`Failed to poll job ${job.id}:`, error instanceof Error ? error.message : String(error));
+        logger.error(
+          `Failed to poll job ${job.id}:`,
+          error instanceof Error ? error.message : String(error)
+        );
       }
     });
 

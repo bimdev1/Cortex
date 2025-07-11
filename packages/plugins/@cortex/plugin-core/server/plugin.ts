@@ -7,14 +7,14 @@ export class CorePlugin extends Plugin {
   networkService!: NetworkService;
 
   async afterAdd() {}
-  
+
   async beforeLoad() {}
-  
+
   async load() {
     // Initialize services
     this.jobService = new JobService();
     this.networkService = new NetworkService();
-    
+
     // Register health check route
     this.app.resource({
       name: 'plugin-core',
@@ -25,20 +25,20 @@ export class CorePlugin extends Plugin {
             timestamp: new Date().toISOString(),
             services: {
               job: 'ready',
-              network: 'ready'
-            }
+              network: 'ready',
+            },
           };
-        }
-      }
+        },
+      },
     });
   }
-  
+
   async install() {}
-  
+
   async afterEnable() {}
-  
+
   async afterDisable() {}
-  
+
   async remove() {}
 }
 

@@ -14,7 +14,7 @@ class ScreenshotGenerator {
 
   async initialize() {
     console.log('🚀 Launching browser...');
-    
+
     this.browser = await chromium.launch({
       headless: true,
       executablePath: '/usr/bin/chromium',
@@ -22,10 +22,10 @@ class ScreenshotGenerator {
     });
 
     this.page = await this.browser.newPage();
-    
+
     // Set viewport for consistent screenshots
     await this.page.setViewportSize({ width: 1920, height: 1080 });
-    
+
     // Ensure output directory exists
     await fsPromises.mkdir(this.outputDir, { recursive: true });
   }
@@ -36,7 +36,7 @@ class ScreenshotGenerator {
     }
 
     const baseUrl = 'http://localhost:13000';
-    
+
     const screenshots = [
       {
         name: 'dashboard-overview',
@@ -55,7 +55,7 @@ class ScreenshotGenerator {
         url: `${baseUrl}/`,
         selector: '.grid.grid-cols-1.md\\:grid-cols-4',
         waitFor: 1500,
-      }
+      },
     ];
 
     console.log(`📷 Generating ${screenshots.length} screenshots...`);
@@ -204,13 +204,15 @@ class ScreenshotGenerator {
           return;
         }
       } catch (error) {
-        console.log(`   ⚠️ Selector not found: ${config.selector}, taking full page screenshot instead`);
+        console.log(
+          `   ⚠️ Selector not found: ${config.selector}, taking full page screenshot instead`
+        );
       }
     }
 
     await this.page.screenshot(screenshotOptions);
     console.log(`   ✓ Saved: ${config.name}.png`);
-    
+
     // Clean up temp file
     try {
       await fsPromises.unlink(tempHtmlPath);
@@ -224,7 +226,7 @@ class ScreenshotGenerator {
 
     // Create a simple logo placeholder
     await this.generateLogo();
-    
+
     // Generate social media cards
     await this.generateSocialCards();
   }

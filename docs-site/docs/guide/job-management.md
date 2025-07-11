@@ -79,10 +79,10 @@ For more complex workloads, you can specify:
 
 ```json
 {
-  "cpu": 1000,         // millicores (1000m = 1 CPU)
-  "memory": "2Gi",      // memory in Mi or Gi
-  "storage": "10Gi",    // storage in Mi or Gi
-  "gpu": 1             // number of GPUs (if supported)
+  "cpu": 1000, // millicores (1000m = 1 CPU)
+  "memory": "2Gi", // memory in Mi or Gi
+  "storage": "10Gi", // storage in Mi or Gi
+  "gpu": 1 // number of GPUs (if supported)
 }
 ```
 
@@ -104,8 +104,8 @@ You can also monitor jobs programmatically:
 ```javascript
 // Get job status
 const jobStatus = await fetch(`http://localhost:13000/api/plugin-core/jobs/${jobId}`, {
-  headers: { 'Authorization': 'Bearer YOUR_API_TOKEN' }
-}).then(res => res.json());
+  headers: { Authorization: 'Bearer YOUR_API_TOKEN' },
+}).then((res) => res.json());
 
 // Stream job logs
 const logStream = new EventSource(`http://localhost:13000/api/plugin-core/jobs/${jobId}/logs`);
@@ -130,7 +130,7 @@ Via API:
 ```javascript
 await fetch(`http://localhost:13000/api/plugin-core/jobs/${jobId}/cancel`, {
   method: 'POST',
-  headers: { 'Authorization': 'Bearer YOUR_API_TOKEN' }
+  headers: { Authorization: 'Bearer YOUR_API_TOKEN' },
 });
 ```
 
@@ -155,6 +155,7 @@ For frequently used job configurations:
 4. Save the template with a descriptive name
 
 To use a template:
+
 1. Click **Create Job from Template**
 2. Select your saved template
 3. Modify any parameters as needed
@@ -186,12 +187,12 @@ To run jobs on a recurring schedule:
 
 ### Common Job Failures
 
-| Error | Possible Causes | Solutions |
-|-------|----------------|-----------|
-| Image Pull Error | Invalid image name, private registry | Check image name, add registry credentials |
-| Resource Limit Exceeded | Job requested more resources than available | Reduce resource requirements |
-| Network Error | Provider network connectivity issues | Try a different provider |
-| Exit Code 1 | Application error | Check application logs for details |
+| Error                   | Possible Causes                             | Solutions                                  |
+| ----------------------- | ------------------------------------------- | ------------------------------------------ |
+| Image Pull Error        | Invalid image name, private registry        | Check image name, add registry credentials |
+| Resource Limit Exceeded | Job requested more resources than available | Reduce resource requirements               |
+| Network Error           | Provider network connectivity issues        | Try a different provider                   |
+| Exit Code 1             | Application error                           | Check application logs for details         |
 
 ### Debugging Strategies
 
